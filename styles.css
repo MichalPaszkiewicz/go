@@ -35,3 +35,8 @@ body, html{
       background:black;
       color:white;
   }
+  
+  .panel-box{
+  margin: auto;
+max-width: 1400px;
+  }
