@@ -4,24 +4,45 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="styles.css">
 <script src="http://cdn.peerjs.com/0.3/peer.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
-var peer = new Peer('pick-an-id', {key: '9t3v4nsdk6ueg66r'}); 
+
+var ticks = (new Date()).getTime();
+
+var id = ("ID" + ticks).substring(10);
+
+console.log(id);
+
+function connectPage(){
+
+var peer = new Peer(id, {key: '9t3v4nsdk6ueg66r'}); 
 
 
 
 //connect
-//var conn = peer.connect('another-peers-id');
-//conn.on('open', function(){
-//  conn.send('hi!');
-//});
+
+var otherID = prompt("other players id:");
+var conn = peer.connect(otherID);
+conn.on('open', function(){
+  conn.send('hi!');
+});
+
+
 
 //receive
-//peer.on('connection', function(conn) {
-//  conn.on('data', function(data){
-//    // Will print 'hi!'
-//    console.log(data);
-//  });
-//});
+peer.on('connection', function(conn) {
+  conn.on('data', function(data){
+    // Will print 'hi!'
+    console.log(data);
+  });
+  
+  $(".main-container").click(function(){
+	conn.send("clicked!");
+	//console.log("this side clicked");
+});
+  
+});
+};
 </script>
 
 <script>
