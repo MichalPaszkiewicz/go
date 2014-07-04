@@ -13,6 +13,7 @@ var id = ("ID" + ticks).substring(10);
 
 console.log(id);
 
+var otherID = "";
 
 
 var peer = new Peer(id, {key: '9t3v4nsdk6ueg66r'}); 
@@ -21,13 +22,11 @@ function connectPage(){
 
 //connect
 
-var otherID = prompt("other players id:");
+otherID = prompt("other players id:");
 var conn = peer.connect(otherID);
 conn.on('open', function(){
   conn.send('hi!');
 });
-
-
 
 //receive
 peer.on('connection', function(conn) {
@@ -36,13 +35,30 @@ peer.on('connection', function(conn) {
     console.log(data);
   });
   
-  $(".main-container").click(function(){
-	conn.send("clicked!");
-	//console.log("this side clicked");
 });
+};
+
+function sendMessage(string){
+
+var conn = peer.connect(otherID);
+
+  conn.send(string);
+
+//receive
+peer.on('connection', function(conn) {
+  conn.on('data', function(data){
+    // Will print 'hi!'
+    console.log(data);
+  });
   
 });
 };
+
+$(".main-container").click(function()
+{
+sendMessage("hahahaha this is sent!");
+});
+
 </script>
 
 <script>
