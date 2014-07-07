@@ -42,6 +42,8 @@ function connect(c) {
         c.on('data', function(data) {
             dataDiv.append('<p>' + c.peer + ':</p><p>' + data +
               '</p>');
+
+	    dataDiv.scrollTop(dataDiv.prop("scrollHeight"));
         });
         c.on('close', function() {
             alert(c.peer + ' has left the chat.');
