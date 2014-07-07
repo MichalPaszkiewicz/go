@@ -137,7 +137,7 @@ $(document).ready(function () {
         });
         $(".message").val('');
         $(".message").focus();
-	dataDiv.scrollTop(d.prop("scrollHeight"));
+	dataDiv.scrollTop(dataDiv.prop("scrollHeight"));
     });
 
     // Goes through each active peer and calls FN on its connections.
