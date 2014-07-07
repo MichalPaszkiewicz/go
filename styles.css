@@ -1,46 +1,53 @@
-body, html{
-  margin: 0;
-  height: 100%;
-  width: 100%;
+body, html {
+    margin: 0;
+    height: 100%;
+    width: 100%;
 }
 
-.main-container{
-  min-height: 100%;
+.main-container {
+    min-height: 100%;
 }
 
-.footer{
-  position: relative;
-  margin-top: -100px;
-  width: 100%;
-  height: 100px;
-  background: black;
-  color: black;
-  font-size: 13px;
-  overflow: hidden;
-}
-
-.panel{
-  width: 100%;
-  min-height: 100px;
-  display:inline-block;
-  }
-
-  .push{
+.footer {
+    position: relative;
+    margin-top: -100px;
+    width: 100%;
     height: 100px;
-    clear:both;
+    background: black;
+    color: black;
+    font-size: 13px;
+    overflow: hidden;
+}
+
+.panel {
+    width: 100%;
+    min-height: 100px;
+    display: inline-block;
+}
+
+.push {
+    height: 100px;
+    clear: both;
     margin-top: 40px;
-  }
+}
 
-  .panel:nth-child(2n-1), .footer{
-      background:black;
-      color:white;
-  }
-  
-  .panel-box{
-  margin: auto;
-max-width: 1400px;
-  }
+.panel:nth-child(2n-1), .footer {
+    background: black;
+    color: white;
+}
 
-  input{
-      margin-bottom: 30px;
-  }
+.panel-box {
+    margin: auto;
+    max-width: 1400px;
+}
+
+input {
+    margin-bottom: 30px;
+}
+
+.data {
+    display: inline-block;
+    float: right;
+    min-width: 250px;
+    max-width: 400px;
+}
