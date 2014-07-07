@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="styles.css">
 <script src="http://cdn.peerjs.com/0.3/peer.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="connect.js"></script>
 <script>
 
 var ticks = (new Date()).getTime();
@@ -15,49 +16,7 @@ console.log(id);
 
 var otherID = "";
 
-
 var peer = new Peer(id, {key: '9t3v4nsdk6ueg66r'}); 
-
-function connectPage(){
-
-//connect
-
-otherID = prompt("other players id:");
-var conn = peer.connect(otherID);
-conn.on('open', function(){
-  conn.send('hi!');
-});
-
-//receive
-peer.on('connection', function(conn) {
-  conn.on('data', function(data){
-    // Will print 'hi!'
-    console.log(data);
-  });
-  
-});
-};
-
-function sendMessage(string){
-
-var conn = peer.connect(otherID);
-
-  conn.send(string);
-
-//receive
-peer.on('connection', function(conn) {
-  conn.on('data', function(data){
-    // Will print 'hi!'
-    console.log(data);
-  });
-  
-});
-};
-
-$(".main-container").click(function()
-{
-sendMessage("hahahaha this is sent!");
-});
 
 </script>
 
@@ -79,11 +38,14 @@ sendMessage("hahahaha this is sent!");
     <div class="panel-box">
       <h1>go!</h1>
       <h2>Play go online with friends</h2>
+        Your ID: <input class="me" />
+        Friend's ID: <input class="him-her" />
+        <button>Connect</button>
     </div>
   </div>
 
   <div class="panel">
-   
+    <div class="data"></div>
   </div>
   
     <div class="push"></div>

@@ -40,3 +40,7 @@ body, html{
   margin: auto;
 max-width: 1400px;
   }
+
+  input{
+      margin-bottom: 30px;
+  }
