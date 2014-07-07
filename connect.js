@@ -31,9 +31,13 @@ peer.on('connection', connect);
 
 // Handle a connection object.
 function connect(c) {
+
+    var dataDiv = $("div.data");
     // Handle a chat connection.
     if (c.label === 'chat') {
-        var dataDiv = $("div.data");
+
+        var chatbox = $('<div>' + c.peer + 'has connected</div>').addClass('connection').addClass('active').attr('id', c.peer);
+        chatbox.appendTo('.data');
 
         c.on('data', function(data) {
             dataDiv.append('<p>' + c.peer + ':</p><p>' + data +
@@ -54,14 +58,17 @@ function connect(c) {
                 var dataView = new Uint8Array(data);
                 var dataBlob = new Blob([dataView]);
                 var url = window.URL.createObjectURL(dataBlob);
-                $('#' + c.peer).find('.messages').append('<div><span class="file">' +
-                    c.peer + ' has sent you a <a target="_blank" href="' + url + '">file</a>.</span></div>');
+                dataDiv.append('<p>' +
+                    c.peer + ' has sent you a <a target="_blank" href="' + url + '">file</a>.</p>');
             }
         });
     }
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
+
+
+    var dataDiv = $("div.data");
     // Prepare file drop box.
     var box = $('#box');
     box.on('dragenter', doNothing);
@@ -72,7 +79,7 @@ $(document).ready(function() {
         eachActiveConnection(function(c, $c) {
             if (c.label === 'file') {
                 c.send(file);
-                $c.find('.messages').append('<div><span class="file">You sent a file.</span></div>');
+                $c.find('div.data').append('<p>You sent a file.</span></p>');
             }
         });
     });
@@ -83,7 +90,7 @@ $(document).ready(function() {
 
     // Connect to a peer
     $('#connect').click(function() {
-        requestedPeer = $('#rid').val();
+        requestedPeer = $('.him-her').val();
         if (!connectedPeers[requestedPeer]) {
             // Create 2 connections, one labelled chat and another labelled file.
             var c = peer.connect(requestedPeer, {
@@ -113,19 +120,23 @@ $(document).ready(function() {
     });
 
     // Send a chat message to all active connections.
-    $('#send').submit(function(e) {
+    $('#send').click(function (e) {
+
+        console.log("Sent:" + e);
+
         e.preventDefault();
         // For each active connection, send the message.
-        var msg = $('#text').val();
+        var msg = $(".message").val();
+
         eachActiveConnection(function(c, $c) {
             if (c.label === 'chat') {
                 c.send(msg);
-                $c.find('.messages').append('<div><span class="you">You: </span>' + msg
-                  + '</div>');
+                $('div.data').append('<p>You: </p><p>' + msg
+                  + '</p>');
             }
         });
-        $('#text').val('');
-        $('#text').focus();
+        $(".message").val('');
+        $(".message").focus();
     });
 
     // Goes through each active peer and calls FN on its connections.
