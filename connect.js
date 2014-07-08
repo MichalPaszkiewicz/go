@@ -40,10 +40,25 @@ function connect(c) {
         chatbox.appendTo('.data');
 
         c.on('data', function(data) {
-            dataDiv.append('<p>' + c.peer + ':</p><p>' + data +
-              '</p>');
+		
+			// if data is a move, don't print!
+			if(data.indexOf("goMove=") > -1)
+			{
+				console.log(data);
+				
+				var tdID = data.substring(data.indexOf('=')+1);
+				
+				console.log(tdID);
+				
+				$("#" + tdID).find("div").addClass("black");
+			}
+			else
+			{		
+				dataDiv.append('<p>' + c.peer + ':</p><p>' + data +
+				'</p>');
 
-	    dataDiv.scrollTop(dataDiv.prop("scrollHeight"));
+				dataDiv.scrollTop(dataDiv.prop("scrollHeight"));
+			}
         });
         c.on('close', function() {
             alert(c.peer + ' has left the chat.');
@@ -113,6 +128,20 @@ $(document).ready(function () {
         }
         connectedPeers[requestedPeer] = 1;
     });
+	
+	$("td").click(function(){
+			$(this).find("div").addClass("white");
+			
+			var msg = "goMove=" + $(this).attr('id');
+			
+			console.log(msg);
+			
+			eachActiveConnection(function(c, $c) {
+				if (c.label === 'chat') {
+					c.send(msg);
+				}
+			});		
+	});
 
     // Close a connection.
     $('#close').click(function() {
