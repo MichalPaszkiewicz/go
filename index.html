@@ -55,5 +55,16 @@ var otherID = "";
 <div class="footer">
   <a href="http://www.michalpaszkiewicz.co.uk">Home</a>
 </div>
+
+<script>
+	   $('.him-her').keypress(function(e){
+      if(e.keyCode==13)
+      $('#connect').click();
+    });
+   $('.message').keypress(function(e){
+      if(e.keyCode==13)
+      $('#send').click();
+    });
+</script>
   
 </body>
