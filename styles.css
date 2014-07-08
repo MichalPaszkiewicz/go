@@ -48,7 +48,21 @@ body, html {
     padding: 20px;
 }
 
+.counter{
+	height: 50%;
+	width: 50%;
+	margin: auto;
+	border-radius: 15px;
+}
 
+.counter.white{
+	background:white;
+	border: black 1px solid;
+}
+
+.counter.black{
+	background:black;
+}
 
 input {
     margin-bottom: 30px;
