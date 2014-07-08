@@ -19,6 +19,12 @@ body, html {
     overflow: hidden;
 }
 
+footer a {
+    color: white;
+    font-size: 20px;
+    font-weight: 800;
+}
+
 .panel {
     width: 100%;
     min-height: 100px;
@@ -41,6 +47,8 @@ body, html {
     max-width: 1400px;
     padding: 20px;
 }
+
+
 
 input {
     margin-bottom: 30px;
@@ -108,10 +116,10 @@ input {
 
 .game-board tr:last-child td:first-child {
     background: url(images/bottom-left-tile.png);
-    border-bottom-left-radius:15px;
+    border-bottom-left-radius: 15px;
 }
 
 .game-board tr:last-child td:last-child {
     background: url(images/bottom-right-tile.png);
-    border-bottom-right-radius:15px;
+    border-bottom-right-radius: 15px;
 }
