@@ -92,7 +92,7 @@ $(document).ready(function () {
 
     // Connect to a peer
     $('#connect').click(function() {
-        requestedPeer = $('.him-her').val();
+        requestedPeer = $('.him-her').val().trim();
         if (!connectedPeers[requestedPeer]) {
             // Create 2 connections, one labelled chat and another labelled file.
             var c = peer.connect(requestedPeer, {
