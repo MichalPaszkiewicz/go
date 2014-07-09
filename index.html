@@ -50,15 +50,12 @@
 
         <div class="panel">
             <div class="game-board">
-                <table style="">
-                    
-                </table>
+                <table style=""></table>
 
             </div>
 
             <div class="data"></div>
         </div>
-
         <div class="push"></div>
     </div>
     <div class="footer">
@@ -76,8 +73,9 @@
             if (e.keyCode == 13)
                 $('#send').click();
         });
-		
+
 		function setTable(size){
+			$('table').width(51 * size);
 			var html = "";
 			for(var i = 0; i < size; i++)
 			{
