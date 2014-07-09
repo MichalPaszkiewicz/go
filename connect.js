@@ -64,7 +64,7 @@ function connect(c) {
 				
 				$("#" + tdID).find("div").addClass("black");
 			}
-			if(data.indexOf("goRemove") > -1)
+			else if(data.indexOf("goRemove") > -1)
 			{
 			    console.log(data);
 
