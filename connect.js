@@ -25,9 +25,17 @@ var connectedPeers = {};
 peer.on('open', function(id){
     $(".me").val(id)
 	
+	if(location.search.length == 0)
+	{
+		
+		
+	$(".friend-link-text, .friend-link").css({"display": "inline-block"})
+	
 	$(".friend-link").val(location.href + "?id=" + id);
 	
 	$(".friend-link").click(function(){ $(this).select() });
+	
+	}
 });
 
 // Await connections from others
