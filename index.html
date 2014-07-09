@@ -87,13 +87,6 @@
 			html += "</tr>";
 			}
 			return html;
-			
-			var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|Mini/i.test(navigator.userAgent);
-			
-			if(isMobile)
-			{
-				$("table").css({"zoom":"0.3"});
-			}
 		};
 		
 		$("table").html(setTable(11));
