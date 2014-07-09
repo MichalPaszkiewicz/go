@@ -147,8 +147,14 @@ input {
 	display: none;
 }
 
+#panel1 button{
+	display: none;
+}
 
-
+.chatbox{
+	clear:right;
+	float:right;
+}
 
 
 
