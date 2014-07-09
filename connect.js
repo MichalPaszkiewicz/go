@@ -52,6 +52,16 @@ function connect(c) {
 				
 				$("#" + tdID).find("div").addClass("black");
 			}
+			if(data.indexOf("goRemove") > -1)
+			{
+			    console.log(data);
+
+			    var tdID = data.substring(data.indexOf('=') + 1);
+
+			    console.log(tdID);
+
+			    $("#" + tdID).find("div").removeClass("black white");
+			}
 			else
 			{		
 				dataDiv.append('<p>' + c.peer + ':</p><p>' + data +
@@ -141,6 +151,22 @@ $(document).ready(function () {
 					c.send(msg);
 				}
 			});		
+	});
+
+	$('td').bind('contextmenu', function (e) {
+	    $(this).find("div").removeClass("black white");
+
+	    var msg = "goRemove=" + $(this).attr('id');
+
+	    console.log(msg);
+
+	    eachActiveConnection(function (c, $c) {
+	        if (c.label === 'chat') {
+	            c.send(msg);
+	        }
+	    });
+
+	    return false;
 	});
 
     // Close a connection.
