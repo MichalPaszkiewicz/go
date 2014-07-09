@@ -137,3 +137,8 @@ input {
     background: url(images/bottom-right-tile.png);
     border-bottom-right-radius: 15px;
 }
+
+.friend-link{
+	display: block;
+	min-width: 650px;
+}
