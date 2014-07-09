@@ -24,6 +24,10 @@ var connectedPeers = {};
 // Show this peer's ID.
 peer.on('open', function(id){
     $(".me").val(id)
+	
+	$(".friend-link").val(location.href + "?id=" + id);
+	
+	$(".friend-link").click(function(){ $(this).select() });
 });
 
 // Await connections from others
@@ -114,6 +118,32 @@ $(document).ready(function () {
         e.preventDefault();
         e.stopPropagation();
     }
+	
+	if(location.search.length > 0)
+	{
+		var requestedPeer = location.search.substring(location.search.indexOf("=") + 1);
+		
+		if(!connectedPeers[requestedPeer]){
+			var c = peer.connect(requestedPeer, {
+				label: 'chat',
+				serialization: 'none',
+				reliable: false,
+				metadata: {message: 'hi i want to chat with you!'}
+				});
+			c.on('open', function() {
+				connect(c);
+				});
+			c.on('error', function(err){ alert(err);});
+			var f = peer.connect(requestedPeer, {label: 'file' });
+			f.on('open', function(){
+				connect(f);
+				});
+			f.on('error', function(err){ alert(err);});
+		
+		}
+		
+		connectedPeers[requestedPeer] = 1;	
+	}
 
     // Connect to a peer
     $('#connect').click(function() {
