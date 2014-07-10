@@ -142,3 +142,20 @@ input {
 	display: block;
 	min-width: 650px;
 }
+
+#panel1 input{
+	display: none;
+}
+
+#panel1 button{
+	display: none;
+}
+
+.chatbox{
+	clear:right;
+	float:right;
+}
+
+
+
+
