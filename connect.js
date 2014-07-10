@@ -19,17 +19,18 @@ var peer = new Peer({
       { url: 'stun:stun.l.google.com:19302' }
     ]} /* Sample servers, please use appropriate ones */
 });
+
 var connectedPeers = {};
 
 // Show this peer's ID.
 peer.on('open', function(id){
-    $(".me").val(id)
+    $(".me").val(id);
 	
 	if(location.search.length == 0)
 	{
 		
 		
-	$(".friend-link-text, .friend-link").css({"display": "inline-block"})
+	$("#friend-link-text, .friend-link").css({"display": "inline-block"})
 	
 	$(".friend-link").val(location.href + "?id=" + id);
 	
@@ -48,7 +49,7 @@ function connect(c) {
     // Handle a chat connection.
     if (c.label === 'chat') {
 
-        var chatbox = $('<div>' + c.peer + 'has connected</div>').addClass('connection').addClass('active').attr('id', c.peer);
+        var chatbox = $('<div>' + c.peer + ' has connected</div>').addClass('connection').addClass('active').attr('id', c.peer);
         chatbox.appendTo('.data');
 
         c.on('data', function(data) {
