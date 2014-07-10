@@ -29,7 +29,7 @@ peer.on('open', function(id){
 	{
 		
 		
-	$(".friend-link-text, .friend-link").css({"display": "inline-block"})
+	$("#friend-link-text, .friend-link").css({"display": "inline-block"})
 	
 	$(".friend-link").val(location.href + "?id=" + id);
 	
