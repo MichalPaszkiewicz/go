@@ -43,8 +43,8 @@
                 <input class="me" />
                 <input class="him-her" />
                 <button id="connect">Connect</button>
-                
-			<span id="friend-link-text" style="display: none">Send this link to a friend: </span>	<input class="friend-link"></input>
+
+                <span id="friend-link-text" style="display: none">Send this link to a friend: </span>	<input class="friend-link"></input>
             </div>
         </div>
 
@@ -56,7 +56,7 @@
 
             <div class="data"></div>
             <div class="chatbox">
-            	Message: <input class="message" />
+                Message: <input class="message" />
                 <button id="send">Send</button>
             </div>
         </div>
@@ -65,6 +65,7 @@
     <div class="footer">
         <div class="panel-box">
             <a href="http://www.michalpaszkiewicz.co.uk">Home</a>
+            <a href="http://lmgtfy.com/?q=how+to+play+go" target="_blank">How to play</a>
         </div>
     </div>
 
@@ -78,22 +79,20 @@
                 $('#send').click();
         });
 
-		function setTable(size){
-			$('table').width(51 * size);
-			var html = "";
-			for(var i = 0; i < size; i++)
-			{
-				html += "<tr>";
-				for(var j = 0; j < size; j++ )
-				{
-					html += "<td id=i" + i + "j" + j + "><div class='counter'></div></td>";
-				}
-			html += "</tr>";
-			}
-			return html;
-		};
-		
-		$("table").html(setTable(11));
+        function setTable(size) {
+            $('table').width(51 * size);
+            var html = "";
+            for (var i = 0; i < size; i++) {
+                html += "<tr>";
+                for (var j = 0; j < size; j++) {
+                    html += "<td id=i" + i + "j" + j + "><div class='counter'></div></td>";
+                }
+                html += "</tr>";
+            }
+            return html;
+        };
+
+        $("table").html(setTable(11));
     </script>
 
 </body>
