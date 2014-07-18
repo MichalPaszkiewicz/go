@@ -5,10 +5,45 @@ function getAdjacentValues(x, y)
 	{
 		var a = x + i;
 		var b = y + i;
-		adjacentValues.push({ xPos : a, yPos : y, val : array[a][y]});
-		adjacentValues.push({ xPos : x, yPos : b, val : array[x][b]});
+		addToArray(adjacentValues, a, y);
+		addToArray(adjacentValues, x, b);
 	}
 	return adjacentValues;
+}
+
+function isOutOfBounds(x, y)
+{
+    var result = x < 0 || y < 0 || x >= size || y >= size;
+
+    return result;
+}
+
+function addToArray(adjacentArray, x, y)
+{
+    if (isOutOfBounds(x, y)) {
+        adjacentArray.push({ xPos: x, yPos: y, val: "OUT_OF_BOUND" });
+    }
+    else
+    {
+        adjacentArray.push({ xPos: x, yPos: y, val: array[x][y] });
+    }
+
+    return adjacentArray;
+}
+
+function addToArray(adjacentArray, x, y, value)
+{
+    if (isOutOfBounds(x, y)) {
+        adjacentArray.push({ xPos: x, yPos: y, val: "OUT_OF_BOUND" });
+    }
+    else {
+        if(array[x][y] == value)
+        {
+            adjacentArray.push({ xPos: x, yPos: y, val: array[x][y] });
+        }
+    }
+
+    return adjacentArray;
 }
 
 function getAdjacentWithValue(x, y, value)
@@ -18,14 +53,8 @@ function getAdjacentWithValue(x, y, value)
 	{
 		var a = x + i;
 		var b = y + i;
-		if(array[a][y] == value)
-		{
-			adjacentWithValue.push({ xPos : a, yPos : y, val : array[a][y]});
-		}
-		if(array[x][b] == value)
-		{
-			adjacentWithValue.push({ xPos : x, yPos : b, val : array[x][b]});
-		}
+		    addToArray(adjacentWithValue, a, y, value);
+		    addToArray(adjacentWithValue, x, b, value);
 	}
 	return adjacentWithValue;
 }
