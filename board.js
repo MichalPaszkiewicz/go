@@ -40,15 +40,18 @@ function setArray()
 
 function logArray()
 {
-	for(var i = 0; i < size; i++)
+	console.log("y");
+	console.log(" |\\");
+	for(var i = size - 1; i > -1; i--)
 	{
-		var newString = "";
+		var newString = i + "|  ";
 		for(var j = 0; j < size; j++)
 		{
-			newString += " " + array[i][j];
+			newString += " " + array[j][i];
 		}	
 		console.log(newString);
 	}
+	console.log("   -----------------------> x");
 }
 
 
