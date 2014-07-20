@@ -46,3 +46,31 @@ function takePieces(x, y, value) {
         }
     }
 }
+
+//this will need to be tested.
+function getCellGroup(cellGroup, x, y)
+{
+	var newCells = [];
+	
+	var nextVals = getAdjacentValues(x, y);
+	
+	for(var i=0; i< nextVals.length; i++)
+	{
+		if( !adjacentArrayHasValue(cellGroup, nextVals[i].xPos, nextVals[i].yPos))
+		{
+			cellGroup.push(nextVals[i]);
+			newCells.push(nextVals[i]);
+		}
+	}
+	
+	for(var i=0; i< newCells.length; i++)
+	{
+		cellGroup = getCellGroup(cellGroup, newCells[i].xPos, newCells[i].yPos);
+	}
+
+	return cellGroup;
+}
+
+
+
+
