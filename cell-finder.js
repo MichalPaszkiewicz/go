@@ -11,6 +11,32 @@ function getAdjacentValues(x, y)
 	return adjacentValues;
 }
 
+function getAdjacentNonZeroValues(x, y)
+{
+	var adjacentValues = [];
+	for(var i = -1; i < 2; i += 2)
+	{
+		var a = x + i;
+		var b = y + i;
+		
+		if(array[a][y] != 0)
+		{
+			addToArray(adjacentValues, a, y);			
+		}
+		if(array[x][b] != 0)
+		{
+			addToArray(adjacentValues, x, b);
+		}
+	}
+	
+	return adjacentValues;
+}
+
+function getAdjacentNonZeroValuesCount(x, y)
+{
+	return getAdjacentNonZeroValues(x, y).length;
+}
+
 function isOutOfBounds(x, y)
 {
     var result = x < 0 || y < 0 || x >= size || y >= size;
