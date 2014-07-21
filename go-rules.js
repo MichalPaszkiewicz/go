@@ -76,6 +76,21 @@ function getCellGroup(cellGroup, x, y)
 	return cellGroup;
 }
 
-
+function removeSurrounded(cellGroup)
+{
+	for(var i=0; i< cellGroup.length; i++)
+	{
+		var nonZeroAdjacents = getAdjacentNonZeroValuesCount(cellGroup[i].xPos, cellGroup[i].yPos);
+		if(nonZeroAdjacents < 4)
+		{
+			return;
+		}
+	}
+	
+	for(var i=0; i< cellGroup.length; i++)
+	{
+		removeMove(cellGroup[i].xPos, cellGroup[i].yPos);
+	}
+}
 
 
