@@ -56,7 +56,7 @@ function getCellGroup(cellGroup, x, y)
 	
 	for(var i=0; i< nextVals.length; i++)
 	{
-		if( !adjacentArrayHasValue(cellGroup, nextVals[i].xPos, nextVals[i].yPos))
+		if( !adjacentArrayHasValue(cellGroup, nextVals[i].xPos, nextVals[i].yPos) && array[nextVals[i].xPos][array[nextVals[i].yPos] == array[x][y]]])
 		{
 			cellGroup.push(nextVals[i]);
 			newCells.push(nextVals[i]);
