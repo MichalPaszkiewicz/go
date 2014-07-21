@@ -31,7 +31,7 @@ function addToArray(adjacentArray, x, y)
     return adjacentArray;
 }
 
-function addToArray(adjacentArray, x, y, value)
+function addToArrayWithVal(adjacentArray, x, y, value)
 {
     if (isOutOfBounds(x, y)) {
         adjacentArray.push({ xPos: x, yPos: y, val: "OUT_OF_BOUND" });
@@ -53,8 +53,8 @@ function getAdjacentWithValue(x, y, value)
 	{
 		var a = x + i;
 		var b = y + i;
-		    addToArray(adjacentWithValue, a, y, value);
-		    addToArray(adjacentWithValue, x, b, value);
+		    addToArrayWithVal(adjacentWithValue, a, y, value);
+		    addToArrayWithVal(adjacentWithValue, x, b, value);
 	}
 	return adjacentWithValue;
 }
