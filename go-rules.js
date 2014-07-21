@@ -40,10 +40,15 @@ function takePieces(x, y, value) {
     for (var i = 0; i < adjacentEnemies.length; i++)
     {
         //console.log(adjacentEnemies[i]);
-        if(mustRemove(adjacentEnemies[i]))
-        {
-            removeMove(adjacentEnemies[i].xPos, adjacentEnemies[i].yPos);
-        }
+        //if(mustRemove(adjacentEnemies[i]))
+        //{
+        //    removeMove(adjacentEnemies[i].xPos, adjacentEnemies[i].yPos);
+        //}
+        
+        var cellGroup = [];
+        cellGroup = getCellGroup(cellGroup, adjacentEnemies[i].xPos, adjacentEnemies[i].yPos);
+        
+        removeSurrounded(cellGroup);
     }
 }
 
