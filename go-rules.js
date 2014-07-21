@@ -56,16 +56,21 @@ function getCellGroup(cellGroup, x, y)
 	
 	for(var i=0; i< nextVals.length; i++)
 	{
-		if( !adjacentArrayHasValue(cellGroup, nextVals[i].xPos, nextVals[i].yPos) && array[nextVals[i].xPos][nextVals[i].yPos] == array[x][y])
+		if( !adjacentArrayHasValue(cellGroup, nextVals[i].xPos, nextVals[i].yPos) && (array[nextVals[i].xPos][nextVals[i].yPos] == array[x][y]))
 		{
 			cellGroup.push(nextVals[i]);
 			newCells.push(nextVals[i]);
 		}
 	}
 	
-	for(var i=0; i< newCells.length; i++)
+	if(newCells.length > 0)
 	{
-		cellGroup = getCellGroup(cellGroup, newCells[i].xPos, newCells[i].yPos);
+	
+		for(var i=0; i< newCells.length; i++)
+		{
+			cellGroup = getCellGroup(cellGroup, newCells[i].xPos, newCells[i].yPos);
+		}
+	
 	}
 
 	return cellGroup;
