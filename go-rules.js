@@ -6,6 +6,8 @@ function addMove(x, y, value) {
     else {
         return;
     }
+    
+    updateDisplay();
 }
 
 function removeMove(x, y) {
