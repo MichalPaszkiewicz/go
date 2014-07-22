@@ -1,3 +1,6 @@
+createArray();
+setArray();
+
 function updateDisplay()
 {
   for(var i = 0; i < size; i++){
