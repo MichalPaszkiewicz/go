@@ -205,7 +205,7 @@ $(document).ready(function () {
 	});
 
 	$('td').bind('contextmenu', function (e) {
-	    $(this).find("div").removeClass("black white");
+	    //$(this).find("div").removeClass("black white");
 
 	    var msg = "goRemove=" + $(this).attr('id');
 
