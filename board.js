@@ -1,7 +1,7 @@
 var array = [];
 vWhite = 1;
 vBlack = 2;
-var size = 10;
+var size = 11;
 
 function otherValue(value)
 {
