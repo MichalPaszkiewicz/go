@@ -59,7 +59,7 @@ function getCellGroup(cellGroup, x, y)
 {
 	var newCells = [];
 	
-	var nextVals = getAdjacentValues(x, y);
+	var nextVals = getAdjacentWithExactValue(x, y, array[x][y]);
 	
 	for(var i=0; i< nextVals.length; i++)
 	{
