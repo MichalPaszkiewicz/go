@@ -61,6 +61,11 @@ function connect(c) {
 				
 				var tdID = data.substring(data.indexOf('=')+1);
 				
+				var xPos = parseInt( tdID.substring(tdID.indexOf("i") + 1) );
+				var yPos = parseInt( tdID.substring(tdID.indexOf("j") + 1) )
+			
+				addMove(xPos, yPos, 2);
+				
 				console.log(tdID);
 				
 				$("#" + tdID).find("div").addClass("black");
@@ -73,7 +78,7 @@ function connect(c) {
 
 			    console.log(tdID);
 
-			    $("#" + tdID).find("div").removeClass("black white");
+			    //$("#" + tdID).find("div").removeClass("black white");
 			}
 			else
 			{		
@@ -179,9 +184,16 @@ $(document).ready(function () {
     });
 	
 	$("td").click(function(){
-			$(this).find("div").addClass("white");
+			//$(this).find("div").addClass("white");
 			
-			var msg = "goMove=" + $(this).attr('id');
+			var itemID = $(this).attr('id')
+			
+			var xPos = parseInt( itemID.substring(itemID.indexOf("i") + 1) );
+			var yPos = parseInt( itemID.substring(itemID.indexOf("j") + 1) )
+			
+			addMove(xPos, yPos, 1);
+			
+			var msg = "goMove=" + itemID;
 			
 			console.log(msg);
 			
