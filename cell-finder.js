@@ -85,6 +85,34 @@ function getAdjacentWithValue(x, y, value)
 	return adjacentWithValue;
 }
 
+function addToArrayWithExactVal(adjacentArray, x, y, value)
+{
+    if (isOutOfBounds(x, y)) {
+        return adjacentArray;
+    }
+    else {
+        if(array[x][y] == value)
+        {
+            adjacentArray.push({ xPos: x, yPos: y, val: array[x][y] });
+        }
+    }
+
+    return adjacentArray;
+}
+
+function getAdjacentWithExactValue(x, y, value)
+{
+	var adjacentWithValue = [];
+	for(var i = -1; i < 2; i += 2)
+	{
+		var a = x + i;
+		var b = y + i;
+		    addToArrayWithExactVal(adjacentWithValue, a, y, value);
+		    addToArrayWithExactVal(adjacentWithValue, x, b, value);
+	}
+	return adjacentWithValue;
+}
+
 function adjacentArrayHasValue(adjacentArray, x, y)
 {
 	for(var i = 0; i < adjacentArray.length; i++)
