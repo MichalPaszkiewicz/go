@@ -60,14 +60,15 @@ function getCellGroup(cellGroup, x, y)
 {
 	var newCells = [];
 	
+	if( !adjacentArrayHasValue(cellGroup, nextVals[i].xPos, nextVals[i].yPos) )
+	{   
+		cellGroup.push({ xPos: x, yPos: y, val: array[x][y] });
+	}
+	
 	var nextVals = getAdjacentWithExactValue(x, y, array[x][y]);
 	
 	for(var i=0; i< nextVals.length; i++)
 	{
-		if( !adjacentArrayHasValue(cellGroup, nextVals[i].xPos, nextVals[i].yPos) )
-		{   
-			cellGroup.push({ xPos: x, yPos: y, val: array[x][y] });
-		}
 		if( !adjacentArrayHasValue(cellGroup, nextVals[i].xPos, nextVals[i].yPos) && (array[nextVals[i].xPos][nextVals[i].yPos] == array[x][y]))
 		{
 			cellGroup.push(nextVals[i]);
