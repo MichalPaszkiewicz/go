@@ -57,7 +57,7 @@ function connect(c) {
 			// if data is a move, don't print!
 			if(data.indexOf("goMove=") > -1)
 			{
-				console.log(data);
+				//console.log(data);
 				
 				var tdID = data.substring(data.indexOf('=')+1);
 				
@@ -66,17 +66,17 @@ function connect(c) {
 			
 				addMove(xPos, yPos, 2);
 				
-				console.log(tdID);
+				//console.log(tdID);
 				
 				$("#" + tdID).find("div").addClass("black");
 			}
 			else if(data.indexOf("goRemove") > -1)
 			{
-			    console.log(data);
+			    //console.log(data);
 
 			    var tdID = data.substring(data.indexOf('=') + 1);
 
-			    console.log(tdID);
+			    //console.log(tdID);
 
 			    //$("#" + tdID).find("div").removeClass("black white");
 			}
@@ -195,7 +195,7 @@ $(document).ready(function () {
 			
 			var msg = "goMove=" + itemID;
 			
-			console.log(msg);
+			//console.log(msg);
 			
 			eachActiveConnection(function(c, $c) {
 				if (c.label === 'chat') {
@@ -209,7 +209,7 @@ $(document).ready(function () {
 
 	    var msg = "goRemove=" + $(this).attr('id');
 
-	    console.log(msg);
+	    //console.log(msg);
 
 	    eachActiveConnection(function (c, $c) {
 	        if (c.label === 'chat') {
@@ -230,7 +230,7 @@ $(document).ready(function () {
     // Send a chat message to all active connections.
     $('#send').click(function (e) {
 
-        console.log("Sent:" + e);
+        //console.log("Sent:" + e);
 
         e.preventDefault();
         // For each active connection, send the message.
