@@ -58,10 +58,14 @@ function getCellGroup(cellGroup, x, y)
 		addToArray(cellGroup, x, y);
 	}
 	
+	var valueToPass = 5;
+	
 	if(!isOutOfBounds(x,y))
 	{
-		var nextVals = getAdjacentWithExactValue(x, y, array[x][y]);
+		valueToPass = array[x][y];
 	}
+	
+	var nextVals = getAdjacentWithExactValue(x, y, valueToPass);
 	
 	for(var i=0; i< nextVals.length; i++)
 	{
