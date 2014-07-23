@@ -19,11 +19,20 @@ function getAdjacentNonZeroValues(x, y)
 		var a = x + i;
 		var b = y + i;
 		
-		if(array[a][y] != 0)
+		if(isOutOfBounds(a, y))
+		{
+			addToArray(adjacentValues, a, y);
+		}
+		else if(array[a][y] != 0)
 		{
 			addToArray(adjacentValues, a, y);			
 		}
-		if(array[x][b] != 0)
+		
+		if(isOutOfBounds(x, b))
+		{
+			addToArray(adjacentValues, x, b);
+		}
+		else if(array[x][b] != 0)
 		{
 			addToArray(adjacentValues, x, b);
 		}
