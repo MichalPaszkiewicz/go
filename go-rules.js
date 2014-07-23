@@ -62,7 +62,7 @@ function getCellGroup(cellGroup, x, y)
 	
 	if( !adjacentArrayHasValue(cellGroup, x, y) )
 	{   
-		cellGroup.push({ xPos: x, yPos: y, val: array[x][y] });
+		function addToArray(cellGroup, x, y)
 	}
 	
 	var nextVals = getAdjacentWithExactValue(x, y, array[x][y]);
