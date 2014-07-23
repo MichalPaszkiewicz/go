@@ -37,16 +37,9 @@ function takePieces(x, y, value) {
 
     var adjacentEnemies = getAdjacentWithValue(x, y, enemyValue);
     
-    //console.log("Adj ene: " + adjacentEnemies + " | placedValue: " + placedValue + " | enemy value: " + enemyValue);
-
     for (var i = 0; i < adjacentEnemies.length; i++)
     {
-        //console.log(adjacentEnemies[i]);
-        //if(mustRemove(adjacentEnemies[i]))
-        //{
-        //    removeMove(adjacentEnemies[i].xPos, adjacentEnemies[i].yPos);
-        //}
-        
+
         var cellGroup = [];
         
         cellGroup = getCellGroup(cellGroup, adjacentEnemies[i].xPos, adjacentEnemies[i].yPos);
@@ -60,12 +53,15 @@ function getCellGroup(cellGroup, x, y)
 {
 	var newCells = [];
 	
-	if( !adjacentArrayHasValue(cellGroup, x, y) )
+	if( !adjacentArrayHasValue(cellGroup, x, y) && !isOutOfBounds(x,y))
 	{   
 		addToArray(cellGroup, x, y);
 	}
 	
-	var nextVals = getAdjacentWithExactValue(x, y, array[x][y]);
+	if(!isOutOfBounds(x,y))
+	{
+		var nextVals = getAdjacentWithExactValue(x, y, array[x][y]);
+	}
 	
 	for(var i=0; i< nextVals.length; i++)
 	{
