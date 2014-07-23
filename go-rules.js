@@ -94,6 +94,7 @@ function removeSurrounded(cellGroup)
 	for(var i=0; i< cellGroup.length; i++)
 	{
 		var nonZeroAdjacents = getAdjacentNonZeroValuesCount(cellGroup[i].xPos, cellGroup[i].yPos);
+		console.log(nonZeroAdjacents);
 		if(nonZeroAdjacents < 4)
 		{
 			return;
