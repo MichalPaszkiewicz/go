@@ -48,6 +48,7 @@ function takePieces(x, y, value) {
         //}
         
         var cellGroup = [];
+        
         cellGroup = getCellGroup(cellGroup, adjacentEnemies[i].xPos, adjacentEnemies[i].yPos);
         
         removeSurrounded(cellGroup);
@@ -63,6 +64,10 @@ function getCellGroup(cellGroup, x, y)
 	
 	for(var i=0; i< nextVals.length; i++)
 	{
+		if( !adjacentArrayHasValue(cellGroup, nextVals[i].xPos, nextVals[i].yPos) )
+		{   
+			cellGroup.push({ xPos: x, yPos: y, val: array[x][y] });
+		}
 		if( !adjacentArrayHasValue(cellGroup, nextVals[i].xPos, nextVals[i].yPos) && (array[nextVals[i].xPos][nextVals[i].yPos] == array[x][y]))
 		{
 			cellGroup.push(nextVals[i]);
