@@ -60,7 +60,7 @@ function getCellGroup(cellGroup, x, y)
 {
 	var newCells = [];
 	
-	if( !adjacentArrayHasValue(cellGroup, nextVals[i].xPos, nextVals[i].yPos) )
+	if( !adjacentArrayHasValue(cellGroup, x, y) )
 	{   
 		cellGroup.push({ xPos: x, yPos: y, val: array[x][y] });
 	}
