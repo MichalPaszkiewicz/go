@@ -16,8 +16,9 @@ function removeMove(x, y) {
 
 function canMove(x, y, value)
 {
+	var isEmpty = array[x][y] == 0;
 	//todo: implement this
-	return true;
+	return isEmpty;
 }
 
 function mustRemove(item)
