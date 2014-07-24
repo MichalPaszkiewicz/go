@@ -68,7 +68,7 @@ function connect(c) {
 				
 				//console.log(tdID);
 				
-				$("#" + tdID).find("div").addClass("black");
+				//$("#" + tdID).find("div").addClass("black");
 			}
 			else if(data.indexOf("goRemove") > -1)
 			{
