@@ -3,6 +3,14 @@ vWhite = 1;
 vBlack = 2;
 var size = 11;
 
+var player = vWhite;
+var currentTurn = vWhite;
+
+function switchTurn()
+{
+	currentTurn = otherValue(currentTurn);
+}
+
 function otherValue(value)
 {
 	if(value == vWhite)
