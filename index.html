@@ -84,12 +84,14 @@
                 $('#send').click();
         });
 
-        function setTable(size) {
-            $('table').width(51 * size);
+        function setTable(newSize) {
+        	size = newSize
+        	
+            $('table').width(51 * newSize);
             var html = "";
-            for (var i = 0; i < size; i++) {
+            for (var i = 0; i < newSize; i++) {
                 html += "<tr>";
-                for (var j = 0; j < size; j++) {
+                for (var j = 0; j < newSize; j++) {
                     html += "<td id=i" + i + "j" + j + "><div class='counter'></div></td>";
                 }
                 html += "</tr>";
