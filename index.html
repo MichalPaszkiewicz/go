@@ -11,17 +11,6 @@
 	<script type="text/javascript" src="go-rules.js"></script>
     <script type="text/javascript" src="test-bed.js"></script>
     <script type="text/javascript" src="display-updater.js"></script>
-    <script>
-
-       // var ticks = (new Date()).getTime();
-
-      //  var id = ("ID" + ticks).substring(10);
-
-       // console.log(id);
-
-      //  var otherID = "";
-
-    </script>
 
     <script>
         (function (i, s, o, g, r, a, m) {
@@ -83,7 +72,8 @@
         });
 
         function setTable(newSize) {
-        	size = newSize
+            
+            size = newSize
         	
             $('table').width(51 * newSize);
             var html = "";
@@ -94,6 +84,9 @@
                 }
                 html += "</tr>";
             }
+            
+            initiateArray();
+            
             return html;
         };
 
