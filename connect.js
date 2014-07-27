@@ -64,7 +64,7 @@ function connect(c) {
 				var xPos = parseInt( tdID.substring(tdID.indexOf("i") + 1) );
 				var yPos = parseInt( tdID.substring(tdID.indexOf("j") + 1) )
 			
-				addMove(xPos, yPos, 2);
+				addMove(xPos, yPos, otherValue(player));
 				
 				//console.log(tdID);
 				
@@ -191,7 +191,7 @@ $(document).ready(function () {
 			var xPos = parseInt( itemID.substring(itemID.indexOf("i") + 1) );
 			var yPos = parseInt( itemID.substring(itemID.indexOf("j") + 1) )
 			
-			addMove(xPos, yPos, 1);
+			addMove(xPos, yPos, player );
 			
 			var msg = "goMove=" + itemID;
 			
