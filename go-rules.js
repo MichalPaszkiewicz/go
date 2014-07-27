@@ -6,7 +6,6 @@ function addMove(x, y, value) {
     else {
         return;
     }
-    
     updateDisplay();
 }
 
@@ -24,27 +23,21 @@ function canMove(x, y, value)
 function mustRemove(item)
 {
     var enemyValue = otherValue(item.val);
-    
     //console.log("mustRemove enemy val: " + enemyValue);
-
     var enemies = getAdjacentWithValue(item.xPos, item.yPos, enemyValue);
-
+    
     return enemies.length > 3;
 }
 
 function takePieces(x, y, value) {
     var placedValue = value;
     var enemyValue = otherValue(value);
-
     var adjacentEnemies = getAdjacentWithValue(x, y, enemyValue);
     
     for (var i = 0; i < adjacentEnemies.length; i++)
     {
-
         var cellGroup = [];
-        
         cellGroup = getCellGroup(cellGroup, adjacentEnemies[i].xPos, adjacentEnemies[i].yPos);
-        
         removeSurrounded(cellGroup);
     }
 }
@@ -79,12 +72,10 @@ function getCellGroup(cellGroup, x, y)
 	
 	if(newCells.length > 0)
 	{
-	
 		for(var i=0; i< newCells.length; i++)
 		{
 			cellGroup = getCellGroup(cellGroup, newCells[i].xPos, newCells[i].yPos);
 		}
-	
 	}
 
 	return cellGroup;
@@ -95,7 +86,7 @@ function removeSurrounded(cellGroup)
 	for(var i=0; i< cellGroup.length; i++)
 	{
 		var nonZeroAdjacents = getAdjacentNonZeroValuesCount(cellGroup[i].xPos, cellGroup[i].yPos);
-		console.log("Non zero adjacents: " + nonZeroAdjacents + " at: (" + cellGroup[i].xPos + "," + cellGroup[i].yPos + ")");
+		//console.log("Non zero adjacents: " + nonZeroAdjacents + " at: (" + cellGroup[i].xPos + "," + cellGroup[i].yPos + ")");
 		if(nonZeroAdjacents < 4)
 		{
 			return;
