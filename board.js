@@ -27,6 +27,13 @@ function otherValue(value)
 	}
 }
 
+function initiateArray()
+{
+	array = [];
+	createArray();
+	setArray();
+}
+
 function createArray()
 {
 	for(var i = 0; i < size; i++)
