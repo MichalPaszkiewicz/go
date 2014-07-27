@@ -74,7 +74,14 @@
         function setTable(newSize) {
             
             size = newSize
+
+            $("table").html(setTable(newSize));	
         	
+            initiateArray();
+        };
+        
+        function getNewTableHtml(newSize)
+        {
             $('table').width(51 * newSize);
             var html = "";
             for (var i = 0; i < newSize; i++) {
@@ -85,12 +92,11 @@
                 html += "</tr>";
             }
             
-            initiateArray();
-            
             return html;
-        };
+        }
+        
+        setTable(11);
 
-        $("table").html(setTable(11));
     </script>
 
 </body>
