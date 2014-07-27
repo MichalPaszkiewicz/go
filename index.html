@@ -35,17 +35,13 @@
                 <input class="me" />
                 <input class="him-her" />
                 <button id="connect">Connect</button>
-
                 <span id="friend-link-text" style="display: none">Send this link to a friend: </span>	<input class="friend-link"></input>
             </div>
         </div>
-
         <div class="panel">
             <div class="game-board">
                 <table style=""></table>
-
             </div>
-
             <div class="data"></div>
             <div class="chatbox">
                 Message: <input class="message" />
@@ -72,11 +68,8 @@
         });
 
         function setTable(newSize) {
-            
             size = newSize
-
             $("table").html(getNewTableHtml(newSize));	
-        	
             initiateArray();
         };
         
@@ -91,7 +84,6 @@
                 }
                 html += "</tr>";
             }
-            
             return html;
         }
         
