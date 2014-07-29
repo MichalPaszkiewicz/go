@@ -28,7 +28,7 @@ peer.on('open', function(id){
 	
 	if(location.search.length == 0)
 	{
-		
+		player = vWhite;
 		
 	$("#friend-link-text, .friend-link").css({"display": "inline-block"})
 	
@@ -36,6 +36,10 @@ peer.on('open', function(id){
 	
 	$(".friend-link").click(function(){ $(this).select() });
 	
+	}
+	else
+	{
+		player = vBlack;
 	}
 });
 
