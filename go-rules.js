@@ -2,13 +2,13 @@ function addMove(x, y, value) {
     if (canMove(x, y, value)) {
         array[x][y] = value;
         takePieces(x, y, value);
+        
+    	switchTurn();
     }
     else {
         return;
     }
     updateDisplay();
-    
-    switchTurn();
 }
 
 function removeMove(x, y) {
