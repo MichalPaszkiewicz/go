@@ -18,7 +18,7 @@ function removeMove(x, y) {
 function canMove(x, y, value)
 {
 	var isEmpty = array[x][y] == 0;
-	var isPlayerTurn = (player == currentTurn)
+	var isPlayerTurn = (value == currentTurn)
 	//todo: implement this
 	return isEmpty && isPlayerTurn;
 }
