@@ -7,6 +7,8 @@ function addMove(x, y, value) {
         return;
     }
     updateDisplay();
+    
+    switchTurn();
 }
 
 function removeMove(x, y) {
