@@ -158,7 +158,7 @@ input {
 	margin-right: 20px;
 }
 
-#friend-link-text{
+.labelspan{
 	float: left;
 	margin-right: 5px;	
 }
