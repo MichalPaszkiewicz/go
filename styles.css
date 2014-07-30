@@ -163,4 +163,17 @@ input {
 	margin-right: 5px;	
 }
 
+.infobox{
+	max-width: 500px;
+	display: inline-block;
+	padding: 30px;
+	margin: 30px;
+	box-shadow: 0 0 16px 9px;
+	border-radius: 15px;
+	background: #FFE6CF;
+}
+
+.infobox .item{
+	clear:both;
+}
 
