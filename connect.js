@@ -30,7 +30,7 @@ peer.on('open', function(id){
 	{
 		player = vWhite;
 		
-	$("#friend-link-text, .friend-link").css({"display": "inline-block"})
+	$("#GamesSettingsLink").removeClass("hidden");
 	
 	$(".friend-link").val(location.href + "?id=" + id);
 	
