@@ -115,6 +115,8 @@
         });
         myCodeMirror.getDoc().setValue("\t/***Insert code here!***/\r\n\t/*You can get the values on the board from: array[x][y]*/\r\n\tvar x = 0;\r\n\tvar y = 0;\r\n\taddMove(x,y,player)");
 
+        $("#custom-coder").append("<div class='custom-coder-settings'><button onclick='autoMove'>Run code</button><div class='clearfix'></div></div>")
+
 	function autoMove()
 	{
 		eval(myCodeMirror.getValue());

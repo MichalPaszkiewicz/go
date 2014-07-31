@@ -8,8 +8,8 @@ body, html {
     min-height: 100%;
 }
 
-.hidden{
-	display: none;
+.hidden {
+    display: none;
 }
 
 .footer {
@@ -23,17 +23,21 @@ body, html {
     overflow: hidden;
 }
 
-.footer a {
-    color: white;
-    font-size: 20px;
-    font-weight: 800;
-    margin-right: 50px;
-}
+    .footer a {
+        color: white;
+        font-size: 20px;
+        font-weight: 800;
+        margin-right: 50px;
+    }
 
 .panel {
     width: 100%;
     min-height: 100px;
     display: inline-block;
+}
+
+.clearfix{
+    clear:both;
 }
 
 .push {
@@ -53,21 +57,21 @@ body, html {
     padding: 20px;
 }
 
-.counter{
-	height: 50%;
-	width: 50%;
-	margin: auto;
-	border-radius: 15px;
+.counter {
+    height: 50%;
+    width: 50%;
+    margin: auto;
+    border-radius: 15px;
 }
 
-.counter.white{
-	background:white;
-	border: black 1px solid;
-}
+    .counter.white {
+        background: white;
+        border: black 1px solid;
+    }
 
-.counter.black{
-	background:black;
-}
+    .counter.black {
+        background: black;
+    }
 
 #panel1 input {
     margin-bottom: 30px;
@@ -143,47 +147,46 @@ body, html {
     border-bottom-right-radius: 15px;
 }
 
-.friend-link{
-	display: block;
-	min-width: 650px;
+.friend-link {
+    display: block;
+    min-width: 650px;
 }
 
-.chatbox{
-	clear:right;
-	float:right;
+.chatbox {
+    clear: right;
+    float: right;
 }
 
-#send
-{
-	margin-right: 20px;
+#send {
+    margin-right: 20px;
 }
 
-.labelspan{
-	float: left;
-	margin-right: 5px;	
+.labelspan {
+    float: left;
+    margin-right: 5px;
 }
 
-.infobox{
-	max-width: 500px;
-	display: inline-block;
-	padding: 30px;
-	margin: 30px;
-	box-shadow: 0 0 16px 9px;
-	border-radius: 15px;
-	background: #FFE6CF;
+.infobox {
+    max-width: 500px;
+    display: inline-block;
+    padding: 30px;
+    margin: 30px;
+    box-shadow: 0 0 16px 9px;
+    border-radius: 15px;
+    background: #FFE6CF;
 }
 
-.infobox .item{
-	clear:both;
-	padding: 10px 0px;
-	float: right;
-}
+    .infobox .item {
+        clear: both;
+        padding: 10px 0px;
+        float: right;
+    }
 
-.infobox .item .labelspan{
-	display: inline-block;
-}
+        .infobox .item .labelspan {
+            display: inline-block;
+        }
 
-#custom-coder{
+#custom-coder {
     display: inline-block;
     min-width: 400px;
     border-radius: 15px;
@@ -191,7 +194,20 @@ body, html {
     margin: 30px;
 }
 
-#custom-coder .CodeMirror
-{
-    border-radius: 15px;
-}
+    #custom-coder .CodeMirror {
+        border-radius: 15px 15px 0 0;
+    }
+
+    #custom-coder .custom-coder-settings {
+        width: 100%;
+        background: #FFE6CF;
+        border-radius: 0 0 15px 15px;
+        padding:20px;
+        -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+        -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+        box-sizing: border-box;  
+    }
+
+    #custom-coder .custom-coder-settings button{
+        float:right;
+    }
