@@ -1,7 +1,15 @@
 var array = [];
 vWhite = 1;
 vBlack = 2;
-var size = 10;
+var size = 11;
+
+var player = vWhite;
+var currentTurn = vWhite;
+
+function switchTurn()
+{
+	currentTurn = otherValue(currentTurn);
+}
 
 function otherValue(value)
 {
@@ -17,6 +25,13 @@ function otherValue(value)
 	{
 		return "asdasksdgfmlksdfgklmsdfgmk";
 	}
+}
+
+function initiateArray()
+{
+	array = [];
+	createArray();
+	setArray();
 }
 
 function createArray()

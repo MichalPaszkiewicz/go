@@ -35,3 +35,9 @@ function addBlackPiece(x,y)
 	addMove(x,y,2);
 	logArray();
 }
+
+function Main()
+{
+	createLineTake();
+	addBlackPiece(6,6);
+}

@@ -1,7 +1,7 @@
 <head>
     <title>play go!</title>
     <meta name="description" content="A multiplayer browser based game of go implementing PeerJS">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=700, initial-scale=0.5">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="http://cdn.peerjs.com/0.3/peer.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -11,19 +11,6 @@
 	<script type="text/javascript" src="go-rules.js"></script>
     <script type="text/javascript" src="test-bed.js"></script>
     <script type="text/javascript" src="display-updater.js"></script>
-    <script>
-
-        var ticks = (new Date()).getTime();
-
-        var id = ("ID" + ticks).substring(10);
-
-        console.log(id);
-
-        var otherID = "";
-
-        //var peer = new Peer(id, {key: '9t3v4nsdk6ueg66r'});
-
-    </script>
 
     <script>
         (function (i, s, o, g, r, a, m) {
@@ -45,25 +32,34 @@
             <div class="panel-box">
                 <h1>go!</h1>
                 <h2>Play go online with friends</h2>
-                <input class="me" />
-                <input class="him-her" />
-                <button id="connect">Connect</button>
-
-                <span id="friend-link-text" style="display: none">Send this link to a friend: </span>	<input class="friend-link"></input>
+                <div id="GameSettings">
+                	<div id="GamesSettingsLink" class="hidden">
+                		<span id="friend-link-text" class="labelspan">Send this link to a friend: </span>	
+                		<input class="friend-link"></input>
+                	</div>
+                </div>
             </div>
         </div>
-
         <div class="panel">
             <div class="game-board">
                 <table style=""></table>
-
             </div>
-
             <div class="data"></div>
             <div class="chatbox">
                 Message: <input class="message" />
                 <button id="send">Send</button>
             </div>
+            <div class="infobox">
+            	<div class="item"><span class="labelspan">Board size</span><input type="number" id="BoardSize" min="7" max="21" value="11"></input></div>
+		<div class="item"><span class="labelspan">Game mode</span>
+			<select>
+  				<option value="Online">Online</option>
+  				<option value="Local">Local</option>
+				<option value="AI">AI</option>
+			</select></div>
+		<div class="item"><button onclick="setTable($('#BoardSize').val())">New game</button></div>
+            </div>
+            <div class="custom-coder"></div>
         </div>
         <div class="push"></div>
     </div>
@@ -84,20 +80,28 @@
                 $('#send').click();
         });
 
-        function setTable(size) {
-            $('table').width(51 * size);
+        function setTable(newSize) {
+            size = newSize
+            $("table").html(getNewTableHtml(newSize));	
+            initiateArray();
+        };
+        
+        function getNewTableHtml(newSize)
+        {
+            $('table').width(51 * newSize);
             var html = "";
-            for (var i = 0; i < size; i++) {
+            for (var i = 0; i < newSize; i++) {
                 html += "<tr>";
-                for (var j = 0; j < size; j++) {
+                for (var j = 0; j < newSize; j++) {
                     html += "<td id=i" + i + "j" + j + "><div class='counter'></div></td>";
                 }
                 html += "</tr>";
             }
             return html;
-        };
+        }
+        
+        setTable(11);
 
-        $("table").html(setTable(11));
     </script>
 
 </body>

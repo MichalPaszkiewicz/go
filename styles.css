@@ -8,6 +8,10 @@ body, html {
     min-height: 100%;
 }
 
+.hidden{
+	display: none;
+}
+
 .footer {
     position: relative;
     margin-top: -100px;
@@ -65,7 +69,7 @@ body, html {
 	background:black;
 }
 
-input {
+#panel1 input {
     margin-bottom: 30px;
 }
 
@@ -144,14 +148,6 @@ input {
 	min-width: 650px;
 }
 
-#panel1 input{
-	display: none;
-}
-
-#panel1 button{
-	display: none;
-}
-
 .chatbox{
 	clear:right;
 	float:right;
@@ -162,5 +158,28 @@ input {
 	margin-right: 20px;
 }
 
+.labelspan{
+	float: left;
+	margin-right: 5px;	
+}
 
+.infobox{
+	max-width: 500px;
+	display: inline-block;
+	padding: 30px;
+	margin: 30px;
+	box-shadow: 0 0 16px 9px;
+	border-radius: 15px;
+	background: #FFE6CF;
+}
+
+.infobox .item{
+	clear:both;
+	padding: 10px 0px;
+	float: right;
+}
+
+.infobox .item .labelspan{
+	display: inline-block;
+}
 

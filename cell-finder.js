@@ -11,6 +11,41 @@ function getAdjacentValues(x, y)
 	return adjacentValues;
 }
 
+function getAdjacentNonZeroValues(x, y)
+{
+	var adjacentValues = [];
+	for(var i = -1; i < 2; i += 2)
+	{
+		var a = x + i;
+		var b = y + i;
+		
+		if(isOutOfBounds(a, y))
+		{
+			addToArray(adjacentValues, a, y);
+		}
+		else if(array[a][y] != 0)
+		{
+			addToArray(adjacentValues, a, y);			
+		}
+		
+		if(isOutOfBounds(x, b))
+		{
+			addToArray(adjacentValues, x, b);
+		}
+		else if(array[x][b] != 0)
+		{
+			addToArray(adjacentValues, x, b);
+		}
+	}
+	
+	return adjacentValues;
+}
+
+function getAdjacentNonZeroValuesCount(x, y)
+{
+	return getAdjacentNonZeroValues(x, y).length;
+}
+
 function isOutOfBounds(x, y)
 {
     var result = x < 0 || y < 0 || x >= size || y >= size;
@@ -31,7 +66,7 @@ function addToArray(adjacentArray, x, y)
     return adjacentArray;
 }
 
-function addToArray(adjacentArray, x, y, value)
+function addToArrayWithVal(adjacentArray, x, y, value)
 {
     if (isOutOfBounds(x, y)) {
         adjacentArray.push({ xPos: x, yPos: y, val: "OUT_OF_BOUND" });
@@ -53,8 +88,36 @@ function getAdjacentWithValue(x, y, value)
 	{
 		var a = x + i;
 		var b = y + i;
-		    addToArray(adjacentWithValue, a, y, value);
-		    addToArray(adjacentWithValue, x, b, value);
+		    addToArrayWithVal(adjacentWithValue, a, y, value);
+		    addToArrayWithVal(adjacentWithValue, x, b, value);
+	}
+	return adjacentWithValue;
+}
+
+function addToArrayWithExactVal(adjacentArray, x, y, value)
+{
+    if (isOutOfBounds(x, y)) {
+        return adjacentArray;
+    }
+    else {
+        if(array[x][y] == value)
+        {
+            adjacentArray.push({ xPos: x, yPos: y, val: array[x][y] });
+        }
+    }
+
+    return adjacentArray;
+}
+
+function getAdjacentWithExactValue(x, y, value)
+{
+	var adjacentWithValue = [];
+	for(var i = -1; i < 2; i += 2)
+	{
+		var a = x + i;
+		var b = y + i;
+		    addToArrayWithExactVal(adjacentWithValue, a, y, value);
+		    addToArrayWithExactVal(adjacentWithValue, x, b, value);
 	}
 	return adjacentWithValue;
 }

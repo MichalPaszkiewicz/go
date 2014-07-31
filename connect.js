@@ -28,14 +28,18 @@ peer.on('open', function(id){
 	
 	if(location.search.length == 0)
 	{
+		player = vWhite;
 		
-		
-	$("#friend-link-text, .friend-link").css({"display": "inline-block"})
+	$("#GamesSettingsLink").removeClass("hidden");
 	
 	$(".friend-link").val(location.href + "?id=" + id);
 	
 	$(".friend-link").click(function(){ $(this).select() });
 	
+	}
+	else
+	{
+		player = vBlack;
 	}
 });
 
@@ -57,23 +61,28 @@ function connect(c) {
 			// if data is a move, don't print!
 			if(data.indexOf("goMove=") > -1)
 			{
-				console.log(data);
+				//console.log(data);
 				
 				var tdID = data.substring(data.indexOf('=')+1);
 				
-				console.log(tdID);
+				var xPos = parseInt( tdID.substring(tdID.indexOf("i") + 1) );
+				var yPos = parseInt( tdID.substring(tdID.indexOf("j") + 1) )
+			
+				addMove(xPos, yPos, otherValue(player));
 				
-				$("#" + tdID).find("div").addClass("black");
+				//console.log(tdID);
+				
+				//$("#" + tdID).find("div").addClass("black");
 			}
 			else if(data.indexOf("goRemove") > -1)
 			{
-			    console.log(data);
+			    //console.log(data);
 
 			    var tdID = data.substring(data.indexOf('=') + 1);
 
-			    console.log(tdID);
+			    //console.log(tdID);
 
-			    $("#" + tdID).find("div").removeClass("black white");
+			    //$("#" + tdID).find("div").removeClass("black white");
 			}
 			else
 			{		
@@ -179,11 +188,18 @@ $(document).ready(function () {
     });
 	
 	$("td").click(function(){
-			$(this).find("div").addClass("white");
+			//$(this).find("div").addClass("white");
 			
-			var msg = "goMove=" + $(this).attr('id');
+			var itemID = $(this).attr('id')
 			
-			console.log(msg);
+			var xPos = parseInt( itemID.substring(itemID.indexOf("i") + 1) );
+			var yPos = parseInt( itemID.substring(itemID.indexOf("j") + 1) )
+			
+			addMove(xPos, yPos, player );
+			
+			var msg = "goMove=" + itemID;
+			
+			//console.log(msg);
 			
 			eachActiveConnection(function(c, $c) {
 				if (c.label === 'chat') {
@@ -193,11 +209,11 @@ $(document).ready(function () {
 	});
 
 	$('td').bind('contextmenu', function (e) {
-	    $(this).find("div").removeClass("black white");
+	    //$(this).find("div").removeClass("black white");
 
 	    var msg = "goRemove=" + $(this).attr('id');
 
-	    console.log(msg);
+	    //console.log(msg);
 
 	    eachActiveConnection(function (c, $c) {
 	        if (c.label === 'chat') {
@@ -218,7 +234,7 @@ $(document).ready(function () {
     // Send a chat message to all active connections.
     $('#send').click(function (e) {
 
-        console.log("Sent:" + e);
+        //console.log("Sent:" + e);
 
         e.preventDefault();
         // For each active connection, send the message.
