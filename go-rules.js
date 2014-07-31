@@ -3,6 +3,8 @@ function addMove(x, y, value) {
         array[x][y] = value;
         takePieces(x, y, value);
         
+        sendMove(x, y)
+
     	switchTurn();
     }
     else {
