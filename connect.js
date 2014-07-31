@@ -72,7 +72,12 @@ function connect(c) {
 				
 				//console.log(tdID);
 				
-				//$("#" + tdID).find("div").addClass("black");
+			    //$("#" + tdID).find("div").addClass("black");
+
+				if ($('#IsUserAI').is(':checked'))
+				{
+				    autoMove();
+				}
 			}
 			else if(data.indexOf("goRemove") > -1)
 			{
