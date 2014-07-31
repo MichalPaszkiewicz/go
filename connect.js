@@ -196,17 +196,8 @@ $(document).ready(function () {
 			var yPos = parseInt( itemID.substring(itemID.indexOf("j") + 1) )
 			
 			addMove(xPos, yPos, player );
-			
-			var msg = "goMove=" + itemID;
-			
-			//console.log(msg);
-			
-			eachActiveConnection(function(c, $c) {
-				if (c.label === 'chat') {
-					c.send(msg);
-				}
-			});		
 	});
+
 
 	$('td').bind('contextmenu', function (e) {
 	    //$(this).find("div").removeClass("black white");
@@ -252,28 +243,41 @@ $(document).ready(function () {
 	dataDiv.scrollTop(dataDiv.prop("scrollHeight"));
     });
 
-    // Goes through each active peer and calls FN on its connections.
-    function eachActiveConnection(fn) {
-        var actives = $('.active');
-        var checkedIds = {};
-        actives.each(function() {
-            var peerId = $(this).attr('id');
-
-            if (!checkedIds[peerId]) {
-                var conns = peer.connections[peerId];
-                for (var i = 0, ii = conns.length; i < ii; i += 1) {
-                    var conn = conns[i];
-                    fn(conn, $(this));
-                }
-            }
-
-            checkedIds[peerId] = 1;
-        });
-    }
-
     // Show browser version
     $('#browsers').text(navigator.userAgent);
 });
+
+// Goes through each active peer and calls FN on its connections.
+function eachActiveConnection(fn) {
+    var actives = $('.active');
+    var checkedIds = {};
+    actives.each(function () {
+        var peerId = $(this).attr('id');
+
+        if (!checkedIds[peerId]) {
+            var conns = peer.connections[peerId];
+            for (var i = 0, ii = conns.length; i < ii; i += 1) {
+                var conn = conns[i];
+                fn(conn, $(this));
+            }
+        }
+
+        checkedIds[peerId] = 1;
+    });
+}
+
+function sendMove(x, y)
+{
+    var msg = "goMove=" + "i" + x + "j" + y;
+
+    //console.log(msg);
+
+    eachActiveConnection(function (c, $c) {
+        if (c.label === 'chat') {
+            c.send(msg);
+        }
+    });
+}
 
 // Make sure things clean up properly.
 

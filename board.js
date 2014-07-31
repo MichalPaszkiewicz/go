@@ -3,6 +3,8 @@ vWhite = 1;
 vBlack = 2;
 var size = 11;
 
+var gameMode = "online";
+
 var player = vWhite;
 var currentTurn = vWhite;
 
