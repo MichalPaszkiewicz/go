@@ -183,3 +183,15 @@ body, html {
 	display: inline-block;
 }
 
+#custom-coder{
+    display: inline-block;
+    min-width: 400px;
+    border-radius: 15px;
+    box-shadow: 0 0 16px 9px;
+    margin: 30px;
+}
+
+#custom-coder .CodeMirror
+{
+    border-radius: 15px;
+}

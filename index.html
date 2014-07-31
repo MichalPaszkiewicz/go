@@ -12,6 +12,12 @@
     <script type="text/javascript" src="test-bed.js"></script>
     <script type="text/javascript" src="display-updater.js"></script>
 
+    <!--codemirror libraries-->
+    <script src="codemirror/codemirror.js"></script>
+    <link href="codemirror/codemirror.css" rel="stylesheet" />
+    <script src="codemirror/javascript.js"></script>
+    <link href="codemirror/ambiance.css" rel="stylesheet" />
+
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
@@ -59,7 +65,7 @@
 			</select></div>
 		<div class="item"><button onclick="setTable($('#BoardSize').val())">New game</button></div>
             </div>
-            <div class="custom-coder"></div>
+            <div id="custom-coder"></div>
         </div>
         <div class="push"></div>
     </div>
@@ -101,6 +107,13 @@
         }
         
         setTable(11);
+
+        var customCodeNode = document.getElementById("custom-coder");
+        var myCodeMirror = CodeMirror(customCodeNode, {
+            lineNumbers: true,
+            theme: "ambiance"
+        });
+        myCodeMirror.getDoc().setValue("function autoMove()\r\n{\r\n\t/***Insert code here!***/\r\n\t/*You can get the values on the board from: array[x][y]*/\r\n\tvar x = 0;\r\n\tvar y = 0;\r\n\treturn {xPos: x, yPos y};\r\n} ");
 
     </script>
 
