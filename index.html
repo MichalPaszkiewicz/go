@@ -113,8 +113,12 @@
             lineNumbers: true,
             theme: "ambiance"
         });
-        myCodeMirror.getDoc().setValue("function autoMove()\r\n{\r\n\t/***Insert code here!***/\r\n\t/*You can get the values on the board from: array[x][y]*/\r\n\tvar x = 0;\r\n\tvar y = 0;\r\n\treturn {xPos: x, yPos y};\r\n} ");
+        myCodeMirror.getDoc().setValue("\t/***Insert code here!***/\r\n\t/*You can get the values on the board from: array[x][y]*/\r\n\tvar x = 0;\r\n\tvar y = 0;\r\n\taddMove(x,y,player)");
 
+	function autoMove()
+	{
+		eval(myCodeMirror.getValue());
+	}
     </script>
 
 </body>
