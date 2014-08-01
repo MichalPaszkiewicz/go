@@ -211,3 +211,11 @@ body, html {
     #custom-coder .custom-coder-settings button{
         float:right;
     }
+    
+    #move-notifier{
+        position: absolute;
+        background: #FFE6CF;
+        color: black;
+        padding: 10px 20px;
+        border-radius: 0 0 15px 0;
+    }
