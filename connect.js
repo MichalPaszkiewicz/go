@@ -94,8 +94,10 @@ function connect(c) {
 			    var settingsString = data.substring(data.indexOf('=') + 1);
 
 			    var newSize = parseInt(settingsString.substring(settingsString.indexOf("s") + 1));
-			    player = parseInt(settingsString.substring(settingsString.indexOf("p")));
+			    var sentPlayer = parseInt(settingsString.substring(settingsString.indexOf("p")));
 
+				player = otherValue(sentPlayer);	
+				
 			    setTable(newSize);
 			}
 			else
