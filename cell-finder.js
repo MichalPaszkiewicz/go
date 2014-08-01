@@ -133,3 +133,52 @@ function adjacentArrayHasValue(adjacentArray, x, y)
 	}
 	return false;
 }
+
+function getLegalMoves(colour)
+{
+    var legalMoveArray = [];
+
+    for(var i = 0; i < size ; i++)
+    {
+        for(var j = 0; j < size; j++)
+        {
+            if(canMove(i, j, colour))
+            {
+                legalMoveArray.push({ xPos : i, yPos : j});
+            }
+        }
+    }
+
+    return legalMoveArray;
+}
+
+function getScoresFromArray(legalMoveArray)
+{
+    var arrayLength = legalMoveArray.length;
+
+    for(var i = 0; i < arrayLength; i++)
+    {
+        legalMoveArray[i].score = calculateScore(legalMoveArray[i].xPos, legalMoveArray[i].yPos);
+    }
+
+    return legalMoveArray;
+}
+
+function calculateMoveScore(x, y, colour)
+{
+    var tempArray = array;
+
+    addMove(x, y, colour);
+
+    var result = calculateScore();
+
+    array = tempArray;
+
+    return result;
+}
+
+function calculateScore()
+{
+    //todo: calculate the score on the board.
+    return 0;
+}
