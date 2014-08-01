@@ -15,4 +15,13 @@ function updateDisplay()
         $("#i" + i + "j" + j + " div").addClass("black");
       }
   }}
+  
+  if(currentTurn == vWhite)
+  {
+    $("#move-notifier").text("White to move");
+  }
+  else
+  {
+    $("#move-notifier").text("Black to move");    
+  }
 }
