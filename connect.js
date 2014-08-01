@@ -201,7 +201,8 @@ $(document).ready(function () {
         connectedPeers[requestedPeer] = 1;
     });
 	
-	$("td").click(function(){
+    //$("td").click(function () {
+    $("#games-table").on('click', 'td', function(){
 			//$(this).find("div").addClass("white");
 			
 			var itemID = $(this).attr('id')
