@@ -65,8 +65,8 @@ function connect(c) {
 				
 				var tdID = data.substring(data.indexOf('=')+1);
 				
-				var xPos = parseInt( tdID.substring(tdID.indexOf("i") + 1) );
-				var yPos = parseInt( tdID.substring(tdID.indexOf("j") + 1) )
+				var xPos = parseInt(tdID.substring(tdID.indexOf("i") + 1));
+				var yPos = parseInt(tdID.substring(tdID.indexOf("j") + 1));
 			
 				addMove(xPos, yPos, otherValue(player));
 				
@@ -88,6 +88,15 @@ function connect(c) {
 			    //console.log(tdID);
 
 			    //$("#" + tdID).find("div").removeClass("black white");
+			}
+			else if(data.indexOf("goSettings=") > -1)
+			{
+			    var settingsString = data.substring(data.indexOf('=') + 1);
+
+			    var newSize = parseInt(settingsString.substring(settingsString.indexOf("s") + 1));
+			    player = parseInt(settingsString.substring(settingsString.indexOf("p")));
+
+			    setTable(newSize);
 			}
 			else
 			{		
@@ -266,7 +275,6 @@ function eachActiveConnection(fn) {
                 fn(conn, $(this));
             }
         }
-
         checkedIds[peerId] = 1;
     });
 }
@@ -274,6 +282,18 @@ function eachActiveConnection(fn) {
 function sendMove(x, y)
 {
     var msg = "goMove=" + "i" + x + "j" + y;
+
+    //console.log(msg);
+
+    eachActiveConnection(function (c, $c) {
+        if (c.label === 'chat') {
+            c.send(msg);
+        }
+    });
+}
+
+function sendSettings() {
+    var msg = "goSettings=" + "s" + size + "p" + player;
 
     //console.log(msg);
 
