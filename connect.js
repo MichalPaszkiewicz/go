@@ -50,11 +50,6 @@ peer.on('connection', connect);
 // Handle a connection object.
 function connect(c) {
 	
-    if(location.search.length == 0)
-    {
-    	sendSettings();
-    }
-
     var dataDiv = $("div.data");
     // Handle a chat connection.
     if (c.label === 'chat') {
@@ -137,6 +132,11 @@ function connect(c) {
                     c.peer + ' has sent you a <a target="_blank" href="' + url + '">file</a>.</p>');
             }
         });
+    }
+    
+    if(location.search.length == 0)
+    {
+    	sendSettings();
     }
 }
 
