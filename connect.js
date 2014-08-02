@@ -39,6 +39,7 @@ peer.on('open', function(id){
 	}
 	else
 	{
+		//$("#games-table").removeClass("hidden");
 		player = vBlack;
 	}
 });
@@ -48,6 +49,11 @@ peer.on('connection', connect);
 
 // Handle a connection object.
 function connect(c) {
+	
+    if(location.search.length == 0)
+    {
+    	sendSettings();
+    }
 
     var dataDiv = $("div.data");
     // Handle a chat connection.
