@@ -49,7 +49,7 @@
         </div>
         <div class="panel">
             <div class="game-board">
-                <table id="games-table" style=""></table>
+                <table id="games-table" class="hidden" style=""></table>
             </div>
             <div class="data"></div>
             <div class="chatbox">
@@ -90,7 +90,10 @@
         function setTable(newSize) {
             size = newSize
             $("table").html(getNewTableHtml(newSize));	
+            $("table").removeClass("hidden");
             initiateArray();
+            
+            
         };
         
         function getNewTableHtml(newSize)
