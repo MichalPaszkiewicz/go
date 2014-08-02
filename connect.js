@@ -25,16 +25,16 @@ var connectedPeers = {};
 // Show this peer's ID.
 peer.on('open', function(id){
     $(".me").val(id);
+    
+    	$(".friend-link").val(location.href + "?id=" + id);
+	
+	$(".friend-link").click(function(){ $(this).select() });
 	
 	if(location.search.length == 0)
 	{
 		player = vWhite;
 		
-	$("#GamesSettingsLink").removeClass("hidden");
-	
-	$(".friend-link").val(location.href + "?id=" + id);
-	
-	$(".friend-link").click(function(){ $(this).select() });
+	//$("#GamesSettingsLink").removeClass("hidden");
 	
 	}
 	else
