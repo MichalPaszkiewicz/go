@@ -136,7 +136,7 @@ function connect(c) {
     
     if(location.search.length == 0)
     {
-    	sendSettings();
+    	setTimeout(function(){sendSettings()},500);
     }
 }
 
