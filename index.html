@@ -64,7 +64,7 @@
   				<option value="Local">Local</option>
 				<option value="AI">AI</option>
 			</select></div>
-		<div class="item"><button onclick="setTable($('#BoardSize').val()); sendSettings();">New game</button></div>
+		<div class="item"><button onclick="setTable($('#BoardSize').val()); sendSettings(); host = 1;">New game</button></div>
             </div>
             <div id="custom-coder"></div>
         </div>
@@ -91,6 +91,10 @@
             size = newSize
             $("table").html(getNewTableHtml(newSize));	
             $("table").removeClass("hidden");
+            if(host = 1 && gameMode == "online")
+            {
+            	$("#GamesSettingsLink").removeClass("hidden");
+            }
             initiateArray();
             
             
@@ -110,7 +114,7 @@
             return html;
         }
         
-        setTable(11);
+        //setTable(11);
 
         var customCodeNode = document.getElementById("custom-coder");
         var myCodeMirror = CodeMirror(customCodeNode, {
