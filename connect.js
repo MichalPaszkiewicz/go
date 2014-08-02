@@ -94,9 +94,9 @@ function connect(c) {
 			    var settingsString = data.substring(data.indexOf('=') + 1);
 
 			    var newSize = parseInt(settingsString.substring(settingsString.indexOf("s") + 1));
-			    var sentPlayer = parseInt(settingsString.substring(settingsString.indexOf("p")));
+			    var sentPlayer = parseInt(settingsString.substring(settingsString.indexOf("p") + 1));
 			    
-			    currentTurn = parseInt(settingsString.substring(settingsString.indexOf("c")));
+			    currentTurn = parseInt(settingsString.substring(settingsString.indexOf("c") + 1));
 
 				player = otherValue(sentPlayer);	
 				
