@@ -3,6 +3,7 @@ vWhite = 1;
 vBlack = 2;
 var size = 11;
 
+var host = "0";
 var gameMode = "online";
 
 var player = vWhite;
