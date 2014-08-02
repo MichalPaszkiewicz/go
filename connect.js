@@ -61,7 +61,7 @@ function connect(c) {
 			// if data is a move, don't print!
 			if(data.indexOf("goMove=") > -1)
 			{
-				console.log(data);
+				//console.log(data);
 				
 				var tdID = data.substring(data.indexOf('=')+1);
 				
@@ -288,7 +288,7 @@ function sendMove(x, y)
 {
     var msg = "goMove=" + "i" + x + "j" + y;
 
-    console.log(msg);
+    //console.log(msg);
 
     eachActiveConnection(function (c, $c) {
         if (c.label === 'chat') {
