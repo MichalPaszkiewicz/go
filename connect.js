@@ -91,6 +91,8 @@ function connect(c) {
 			}
 			else if(data.indexOf("goSettings=") > -1)
 			{
+			    host = 0;
+				
 			    var settingsString = data.substring(data.indexOf('=') + 1);
 
 			    var newSize = parseInt(settingsString.substring(settingsString.indexOf("s") + 1));
