@@ -61,7 +61,7 @@ function connect(c) {
 			// if data is a move, don't print!
 			if(data.indexOf("goMove=") > -1)
 			{
-				//console.log(data);
+				console.log(data);
 				
 				var tdID = data.substring(data.indexOf('=')+1);
 				
@@ -95,6 +95,8 @@ function connect(c) {
 
 			    var newSize = parseInt(settingsString.substring(settingsString.indexOf("s") + 1));
 			    var sentPlayer = parseInt(settingsString.substring(settingsString.indexOf("p")));
+			    
+			    currentTurn = parseInt(settingsString.substring(settingsString.indexOf("c")));
 
 				player = otherValue(sentPlayer);	
 				
@@ -286,7 +288,7 @@ function sendMove(x, y)
 {
     var msg = "goMove=" + "i" + x + "j" + y;
 
-    //console.log(msg);
+    console.log(msg);
 
     eachActiveConnection(function (c, $c) {
         if (c.label === 'chat') {
@@ -296,7 +298,7 @@ function sendMove(x, y)
 }
 
 function sendSettings() {
-    var msg = "goSettings=" + "s" + size + "p" + player;
+    var msg = "goSettings=" + "s" + size + "p" + player + "c" + currentTurn;
 
     //console.log(msg);
 
