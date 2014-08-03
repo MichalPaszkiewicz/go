@@ -89,11 +89,16 @@
 
         function setTable(newSize) {
             size = newSize
+            gameMode = $("select").val();
             $("table").html(getNewTableHtml(newSize));	
             $("table").removeClass("hidden");
             if(host == 1 && gameMode == "online")
             {
             	$("#GamesSettingsLink").removeClass("hidden");
+            }
+            if(gameMode == "local" || gameMode == "AI")
+            {
+            	$("#GamesSettingsLink").addClass("hidden");
             }
             initiateArray();
             
