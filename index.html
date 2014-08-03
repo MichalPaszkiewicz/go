@@ -52,7 +52,10 @@
                 <table id="games-table" class="hidden" style=""></table>
             </div>
             <div class="data"></div>
-
+            <div class="chatbox">
+                Message: <input class="message" />
+                <button id="send">Send</button>
+            </div>
             <div class="infobox">
             	<div class="item"><span class="labelspan">Board size</span><input type="number" id="BoardSize" min="7" max="21" value="11"></input></div>
 		<div class="item"><span class="labelspan">Game mode</span>
@@ -64,10 +67,6 @@
 		<div class="item"><button onclick="host = 1; setTable($('#BoardSize').val()); sendSettings();">New game</button></div>
             </div>
             <div id="custom-coder"></div>
-            <div class="chatbox">
-                Message: <input class="message" />
-                <button id="send">Send</button>
-            </div>
         </div>
         <div class="push"></div>
     </div>
