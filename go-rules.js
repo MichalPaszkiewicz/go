@@ -6,6 +6,15 @@ function addMove(x, y, value) {
         sendMove(x, y)
 
     	switchTurn();
+    	
+    	if(gameMode == "local")
+    	{
+    		player = otherValue(player);
+    	}
+    	if(gameMode == "AI")
+    	{
+    		//todo: add AI move
+    	}
     }
     else {
         return;
