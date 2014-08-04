@@ -9,4 +9,10 @@ function aiMove()
  var y = legalMoves[i].yPos;
 
  addMove(x, y, aiPlayer);
+ 
+ 
+ 		if($('#IsUserAI').is(':checked'))
+		{
+			autoMove();
+		}
 }
