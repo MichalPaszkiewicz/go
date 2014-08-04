@@ -25,3 +25,7 @@ function updateDisplay()
     $("#move-notifier").text("Black to move");    
   }
 }
+
+function gameOver(){
+  alert("Game over");
+}
