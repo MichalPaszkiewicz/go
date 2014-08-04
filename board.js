@@ -11,10 +11,10 @@ var player = vWhite;
 var currentTurn = vWhite;
 
 //store slightly old values
-var OldArray-1 = [];
-var OldArray-2 = [];
-var OldMove-1 = "None";
-var OldMove-2 = "None";
+var ARRAYminus1 = [];
+var ARRAYminus2 = [];
+var MOVEminus1 = "None";
+var MOVEminus2 = "None";
 
 function switchTurn()
 {
