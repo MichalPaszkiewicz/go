@@ -135,6 +135,10 @@
 	function autoMove()
 	{
 		eval(myCodeMirror.getValue());
+		if(gameMode == "AI")
+		{
+			aiMove();
+		}
 	}
     </script>
 
