@@ -1,9 +1,17 @@
 function addMove(x, y, value) {
     if (canMove(x, y, value)) {
+    	
+    	OldArray-2 = OldArray-1;
+    	OldArray-1 = array;
+    	
+    	OldMove-2 = OldMove-1;
+    	
         array[x][y] = value;
         takePieces(x, y, value);
         
         sendMove(x, y)
+        
+        OldMove-1 = {xPos : x, yPos : y};
 
     	switchTurn();
     	
