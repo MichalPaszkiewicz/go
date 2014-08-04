@@ -223,6 +223,11 @@ $(document).ready(function () {
 			var yPos = parseInt( itemID.substring(itemID.indexOf("j") + 1) )
 			
 			addMove(xPos, yPos, player );
+			
+			if(gameMode == "AI")
+			{
+				aiMove();
+			}
 	});
 
 
