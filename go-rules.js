@@ -13,7 +13,7 @@ function addMove(x, y, value) {
     	}
     	if(gameMode == "AI")
     	{
-    		aiMove();
+    		// todo: cal ai move, but not in here..
     	}
     }
     else {
