@@ -110,10 +110,10 @@
         {
             $('table').width(51 * newSize);
             var html = "";
-            for (var i = 0; i < newSize; i++) {
+            for (var i = newSize; i > -1; i++) {
                 html += "<tr>";
                 for (var j = 0; j < newSize; j++) {
-                    html += "<td id=i" + i + "j" + j + "><div class='counter'></div></td>";
+                    html += "<td id=i" + j + "j" + i + "><div class='counter'></div></td>";
                 }
                 html += "</tr>";
             }
