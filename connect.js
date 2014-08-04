@@ -227,6 +227,10 @@ $(document).ready(function () {
 			if(gameMode == "AI")
 			{
 				aiMove();
+				if($('#IsUserAI').is(':checked'))
+				{
+					autoMove();
+				}
 			}
 	});
 
