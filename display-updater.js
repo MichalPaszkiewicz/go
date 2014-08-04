@@ -16,6 +16,15 @@ function updateDisplay()
       }
   }}
   
+  if(player == vWhite)
+  {
+    $("#player-colour").text("You are white").css({ color : "white"});
+  }
+  if(player == vBlack)
+  {
+    $("#player-colour").text("You are black").css({ color : "black"});
+  }
+  
   if(currentTurn == vWhite)
   {
     $("#move-notifier").text("White to move");
