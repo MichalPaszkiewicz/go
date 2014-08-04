@@ -13,8 +13,8 @@ var currentTurn = vWhite;
 //store slightly old values
 var OldArray-1 = [];
 var OldArray-2 = [];
-var OldMove-1 = [];
-var OldMove-2 = [];
+var OldMove-1 = "None";
+var OldMove-2 = "None";
 
 function switchTurn()
 {
