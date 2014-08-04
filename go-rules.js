@@ -13,7 +13,7 @@ function addMove(x, y, value) {
     	}
     	if(gameMode == "AI")
     	{
-    		//todo: add AI move
+    		aiMove();
     	}
     }
     else {
