@@ -212,10 +212,24 @@ body, html {
         float:right;
     }
     
-    #move-notifier{
+    #player-notifier{
         position: absolute;
+        height: 40px;
+        width: 260px;
+        background: rgb(219, 158, 28);
+        border-radius: 0 0 15px 0;
+    }
+    
+    #move-notifier{
         background: #FFE6CF;
         color: black;
+        padding: 10px 20px;
+        border-radius: 0 0 15px 0;
+    }
+    
+    #player-notifier #player-colour{
+        float: left;
+        color: white;
         padding: 10px 20px;
         border-radius: 0 0 15px 0;
     }
