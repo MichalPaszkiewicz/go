@@ -5,8 +5,8 @@ function aiMove()
   
   var i = Math.floor(legalMoves.length * Math.random());
   
- var x = aiPlayer[i].xPos;
- var y = aiPlayer[i].yPos;
+ var x = legalMoves[i].xPos;
+ var y = legalMoves[i].yPos;
 
  addMove(x, y, aiPlayer);
 }
