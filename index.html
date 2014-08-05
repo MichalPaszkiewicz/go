@@ -151,7 +151,10 @@
 	
 	function newSettings()
 	{
-		player = parseInt($('input[name=player]:checked').val());
+		if(gameMode == "online")
+		{
+			player = parseInt($('input[name=player]:checked').val());
+		}
 		host = 1; 
 		setTable($('#BoardSize').val());
 	}
