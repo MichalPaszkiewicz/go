@@ -162,11 +162,11 @@
 	$("#game-mode-select").change(function(){
 		if($("#game-mode-select").val() == "online")
 		{
-			
+			$(".player-item").removeClass("hidden");
 		}
 		else
 		{
-			
+			$(".player-item").addClass("hidden");	
 		}
 		
 	});
