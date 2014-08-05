@@ -151,7 +151,7 @@
 	
 	function newSettings()
 	{
-		if(gameMode == "online")
+		if($("#game-mode-select").val() == "online")
 		{
 			player = parseInt($('input[name=player]:checked').val());
 		}
