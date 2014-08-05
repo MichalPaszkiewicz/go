@@ -68,7 +68,7 @@
   				<option value="local">Local</option>
 				<option value="AI">AI</option>
 			</select></div>
-		<div class="item"><span class="labelspan">Play as</span>
+		<div class="item player-item"><span class="labelspan">Play as</span>
 			<input type="radio" name="player" value=1 checked>White
 			<input type="radio" name="player" value=2>Black
 		</div>
@@ -97,7 +97,7 @@
 
         function setTable(newSize) {
             size = newSize
-            gameMode = $("select").val();
+            gameMode = $("#game-mode-select").val();
             $("table").html(getNewTableHtml(newSize));	
             $("table").removeClass("hidden");
             if(host == 1 && gameMode == "online")
@@ -158,6 +158,18 @@
 		host = 1; 
 		setTable($('#BoardSize').val());
 	}
+	
+	$("#game-mode-select").change(function(){
+		if($("#game-mode-select").val() == "online")
+		{
+			
+		}
+		else
+		{
+			
+		}
+		
+	});
     </script>
 
 </body>
