@@ -235,3 +235,7 @@ body, html {
         padding: 10px 20px;
         border-radius: 0 0 15px 0;
     }
+
+#panel1 a{
+    color: white;
+}
