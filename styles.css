@@ -218,6 +218,7 @@ body, html {
         width: 300px;
         background: rgb(219, 158, 28);
         border-radius: 0 0 15px 0;
+        font-weight: 900;
     }
     
     #move-notifier{
