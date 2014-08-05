@@ -72,7 +72,7 @@
 			<input type="radio" name="player" value=1 checked>White
 			<input type="radio" name="player" value=2>Black
 		</div>
-		<div class="item"><button onclick="host = 1; setTable($('#BoardSize').val()); sendSettings();">New game</button></div>
+		<div class="item"><button onclick="newSettings(); sendSettings();">New game</button></div>
             </div>
             <div id="custom-coder"></div>
         </div>
@@ -147,6 +147,13 @@
 		{
 			aiMove();
 		}
+	}
+	
+	function newSettings()
+	{
+		player = parseInt($('input[name=player]:checked').val());
+		host = 1; 
+		setTable($('#BoardSize').val());
 	}
     </script>
 
