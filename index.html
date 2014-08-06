@@ -111,7 +111,8 @@
             initiateArray();
            
            updateDisplay(); 
-            
+           
+           $("#player-notifier").removeClass("hidden");
         };
         
         function getNewTableHtml(newSize)
@@ -151,8 +152,6 @@
 	
 	function newSettings()
 	{
-		$("#player-notifier").removeClass("hidden");
-		
 		if($("#game-mode-select").val() == "online")
 		{
 			player = parseInt($('input[name=player]:checked').val());
