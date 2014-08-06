@@ -25,20 +25,21 @@ var connectedPeers = {};
 // Show this peer's ID.
 peer.on('open', function(id){
     $(".me").val(id);
+    
+    	$(".friend-link").val(location.href + "?id=" + id);
+	
+	$(".friend-link").click(function(){ $(this).select() });
 	
 	if(location.search.length == 0)
 	{
 		player = vWhite;
 		
-	$("#GamesSettingsLink").removeClass("hidden");
-	
-	$(".friend-link").val(location.href + "?id=" + id);
-	
-	$(".friend-link").click(function(){ $(this).select() });
+	//$("#GamesSettingsLink").removeClass("hidden");
 	
 	}
 	else
 	{
+		//$("#games-table").removeClass("hidden");
 		player = vBlack;
 	}
 });
@@ -48,7 +49,7 @@ peer.on('connection', connect);
 
 // Handle a connection object.
 function connect(c) {
-
+	
     var dataDiv = $("div.data");
     // Handle a chat connection.
     if (c.label === 'chat') {
@@ -91,11 +92,17 @@ function connect(c) {
 			}
 			else if(data.indexOf("goSettings=") > -1)
 			{
+			    host = 0;
+				
 			    var settingsString = data.substring(data.indexOf('=') + 1);
 
 			    var newSize = parseInt(settingsString.substring(settingsString.indexOf("s") + 1));
-			    player = parseInt(settingsString.substring(settingsString.indexOf("p")));
+			    var sentPlayer = parseInt(settingsString.substring(settingsString.indexOf("p") + 1));
+			    
+			    currentTurn = parseInt(settingsString.substring(settingsString.indexOf("c") + 1));
 
+				player = otherValue(sentPlayer);	
+				
 			    setTable(newSize);
 			}
 			else
@@ -125,6 +132,11 @@ function connect(c) {
                     c.peer + ' has sent you a <a target="_blank" href="' + url + '">file</a>.</p>');
             }
         });
+    }
+    
+    if(location.search.length == 0)
+    {
+    	setTimeout(function(){sendSettings()},500);
     }
 }
 
@@ -211,6 +223,11 @@ $(document).ready(function () {
 			var yPos = parseInt( itemID.substring(itemID.indexOf("j") + 1) )
 			
 			addMove(xPos, yPos, player );
+			
+			if(gameMode == "AI")
+			{
+				aiMove();
+			}
 	});
 
 
@@ -294,7 +311,7 @@ function sendMove(x, y)
 }
 
 function sendSettings() {
-    var msg = "goSettings=" + "s" + size + "p" + player;
+    var msg = "goSettings=" + "s" + size + "p" + player + "c" + currentTurn;
 
     //console.log(msg);
 

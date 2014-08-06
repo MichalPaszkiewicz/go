@@ -1,12 +1,20 @@
+//set up settings
 var array = [];
 vWhite = 1;
 vBlack = 2;
 var size = 11;
 
+var host = 0;
 var gameMode = "online";
 
 var player = vWhite;
 var currentTurn = vWhite;
+
+//store slightly old values
+var ARRAYminus1 = [];
+var ARRAYminus2 = [];
+var MOVEminus1 = "None";
+var MOVEminus2 = "None";
 
 function switchTurn()
 {

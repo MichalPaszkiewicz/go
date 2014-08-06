@@ -11,6 +11,7 @@
 	<script type="text/javascript" src="go-rules.js"></script>
     <script type="text/javascript" src="test-bed.js"></script>
     <script type="text/javascript" src="display-updater.js"></script>
+    <script type="text/javascript" src="ai.js"></script>
 
     <!--codemirror libraries-->
     <script src="codemirror/codemirror.js"></script>
@@ -35,10 +36,13 @@
 
     <div class="main-container">
         <div id="panel1" class="panel">
-      	    <div id="move-notifier">White to move</div>
+            <div id="player-notifier">
+      	    	<div id="move-notifier">White to move</div>
+      	    	<span id="player-colour"></span>
+      	    </div>
             <div class="panel-box">
                 <h1>go!</h1>
-                <h2>Play go online with friends</h2>
+                <h2>Play go online with friends using <a href="http://peerjs.com/" target="_blank">Peerjs</a></h2>
                 <div id="GameSettings">
                 	<div id="GamesSettingsLink" class="hidden">
                 		<span id="friend-link-text" class="labelspan">Send this link to a friend: </span>	
@@ -49,7 +53,7 @@
         </div>
         <div class="panel">
             <div class="game-board">
-                <table id="games-table" style=""></table>
+                <table id="games-table" class="hidden" style=""></table>
             </div>
             <div class="data"></div>
             <div class="chatbox">
@@ -59,12 +63,16 @@
             <div class="infobox">
             	<div class="item"><span class="labelspan">Board size</span><input type="number" id="BoardSize" min="7" max="21" value="11"></input></div>
 		<div class="item"><span class="labelspan">Game mode</span>
-			<select>
-  				<option value="Online">Online</option>
-  				<option value="Local">Local</option>
+			<select id="game-mode-select">
+  				<option value="online">Online</option>
+  				<option value="local">Local</option>
 				<option value="AI">AI</option>
 			</select></div>
-		<div class="item"><button onclick="setTable($('#BoardSize').val()); sendSettings();">New game</button></div>
+		<div class="item player-item"><span class="labelspan">Play as</span>
+			<input type="radio" name="player" value=1 checked>White
+			<input type="radio" name="player" value=2>Black
+		</div>
+		<div class="item"><button onclick="newSettings(); sendSettings();">New game</button></div>
             </div>
             <div id="custom-coder"></div>
         </div>
@@ -89,32 +97,45 @@
 
         function setTable(newSize) {
             size = newSize
+            gameMode = $("#game-mode-select").val();
             $("table").html(getNewTableHtml(newSize));	
+            $("table").removeClass("hidden");
+            if(host == 1 && gameMode == "online")
+            {
+            	$("#GamesSettingsLink").removeClass("hidden");
+            }
+            if(gameMode == "local" || gameMode == "AI")
+            {
+            	$("#GamesSettingsLink").addClass("hidden");
+            }
             initiateArray();
+           
+           updateDisplay(); 
+            
         };
         
         function getNewTableHtml(newSize)
         {
             $('table').width(51 * newSize);
             var html = "";
-            for (var i = 0; i < newSize; i++) {
+            for (var i = newSize - 1; i > -1; i--) {
                 html += "<tr>";
                 for (var j = 0; j < newSize; j++) {
-                    html += "<td id=i" + i + "j" + j + "><div class='counter'></div></td>";
+                    html += "<td id=i" + j + "j" + i + "><div class='counter'></div></td>";
                 }
                 html += "</tr>";
             }
             return html;
         }
         
-        setTable(11);
+        //setTable(11);
 
         var customCodeNode = document.getElementById("custom-coder");
         var myCodeMirror = CodeMirror(customCodeNode, {
             lineNumbers: true,
             theme: "ambiance"
         });
-        myCodeMirror.getDoc().setValue("\t/***Insert code here!***/\r\n\t/*You can get the values on the board from: array[x][y]*/\r\n\tvar x = Math.floor(size * Math.random());\r\n\tvar y = Math.floor(size * Math.random());\r\n\taddMove(x,y,player)");
+	myCodeMirror.getDoc().setValue("\t/***Insert code here!***/\r\n\t/*You can get the values on the board from: array[x][y]*/\r\n\tvar legalMoves = getLegalMoves(player);\r\n\tvar lm = Math.floor(legalMoves.length * Math.random());\r\n\tvar x = legalMoves[lm].xPos;\r\n\tvar y = legalMoves[lm].yPos;\r\n\taddMove(x,y,player)");
 
         $("#custom-coder").append("<div class='custom-coder-settings'><input id='IsUserAI' type='checkbox' name='IsUserAI'>Run code automatically</input>" 
             + "<button onclick='autoMove()'>Run code</button><div class='clearfix'></div></div>");
@@ -122,7 +143,40 @@
 	function autoMove()
 	{
 		eval(myCodeMirror.getValue());
+		if(gameMode == "AI")
+		{
+			aiMove();
+		}
 	}
+	
+	function newSettings()
+	{
+		if($("#game-mode-select").val() == "online")
+		{
+			player = parseInt($('input[name=player]:checked').val());
+		}
+		else
+		{
+			player = 1;
+			currentTurn = 1;
+		}
+		host = 1; 
+		setTable($('#BoardSize').val());
+	}
+	
+	$("#game-mode-select").change(function(){
+		if($("#game-mode-select").val() == "online")
+		{
+			$(".player-item").removeClass("hidden");
+		}
+		else
+		{
+			$(".player-item").addClass("hidden");	
+		}
+		
+	});
+	
+	console.log("%c" + "A website made by Michal Paszkiewicz", "color: aliceBlue; text-shadow: black 1px 1px 4px; font-size: 40px;")
     </script>
 
 </body>

@@ -1,11 +1,28 @@
 function addMove(x, y, value) {
     if (canMove(x, y, value)) {
+    	
+    	ARRAYminus2 = ARRAYminus1;
+    	ARRAYminus1 = array;
+    	
+    	MOVEminus2 = MOVEminus1;
+    	
         array[x][y] = value;
         takePieces(x, y, value);
         
         sendMove(x, y)
+        
+        MOVEminus1 = {xPos : x, yPos : y};
 
     	switchTurn();
+    	
+    	if(gameMode == "local")
+    	{
+    		player = otherValue(player);
+    	}
+    	if(gameMode == "AI")
+    	{
+    		// todo: cal ai move, but not in here..
+    	}
     }
     else {
         return;
