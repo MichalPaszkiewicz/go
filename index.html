@@ -151,6 +151,8 @@
 	
 	function newSettings()
 	{
+		$("#player-notifier").removeClass("hidden");
+		
 		if($("#game-mode-select").val() == "online")
 		{
 			player = parseInt($('input[name=player]:checked').val());
