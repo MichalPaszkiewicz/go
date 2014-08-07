@@ -41,7 +41,7 @@ function passesKoRule(x, y, value)
 	
 	testArray[x][y] = value;
 	
-	return !ARRAYminus1.equals(testArray);
+	return !ARRAYminus2.equals(testArray);
 }
 
 function canMove(x, y, value)
