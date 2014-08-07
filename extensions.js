@@ -27,13 +27,16 @@ Array.prototype.equals = function (array) {
 // set array to equal array properly.
 Array.prototype.setTo = function (array) {
     // if the other array is a falsy value, return
-    if (!array)
+    if (!array || array.length < 1)
         return false;
         
-    for(var i = 0; i < size; i++)
+    if(this.length != size)
+    {
+    	for(var i = 0; i < size; i++)
 	{
 		this.push([]);
 	}
+    }
     
     for (var i = 0; i < size; i++) {
         for(var j = 0; j < size; j++)
