@@ -1,8 +1,8 @@
 function addMove(x, y, value) {
     if (canMove(x, y, value)) {
     	
-    	ARRAYminus2 = ARRAYminus1;
-    	ARRAYminus1 = array;
+    	ARRAYminus2.setTo(ARRAYminus1);
+    	ARRAYminus1.setTo(array);
     	
     	MOVEminus2 = MOVEminus1;
     	
