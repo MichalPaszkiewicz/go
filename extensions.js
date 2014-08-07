@@ -32,14 +32,14 @@ Array.prototype.setTo = function (array) {
         
     for(var i = 0; i < size; i++)
 	{
-		Array.push([]);
+		this.push([]);
 	}
     
     for (var i = 0; i < size; i++) {
         for(var j = 0; j < size; j++)
         {
-            Array[i][j] = array[i][j];
+            this[i][j] = array[i][j];
         }
     }       
-    return Array;
+    return this;
 } 
