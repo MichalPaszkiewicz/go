@@ -39,6 +39,7 @@ function passesKoRule(x, y, value)
 	var testArray = [];
 	testArray.setTo(array);
 	
+	// todo: actually needs to take pieces, otherwise this will not be getting correct latest move
 	testArray[x][y] = value;
 	
 	return !ARRAYminus2.equals(testArray);
