@@ -22,3 +22,24 @@ Array.prototype.equals = function (array) {
     }       
     return true;
 }   //taken from http://stackoverflow.com/questions/7837456/comparing-two-arrays-in-javascript
+
+
+// set array to equal array properly.
+Array.prototype.setTo = function (array) {
+    // if the other array is a falsy value, return
+    if (!array)
+        return false;
+        
+    for(var i = 0; i < size; i++)
+	{
+		Array.push([]);
+	}
+    
+    for (var i = 0; i < size; i++) {
+        for(var j = 0; j < size; j++)
+        {
+            Array[i][j] = array[i][j];
+        }
+    }       
+    return Array;
+} 
