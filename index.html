@@ -136,7 +136,7 @@
             lineNumbers: true,
             theme: "ambiance"
         });
-	myCodeMirror.getDoc().setValue("\t/***Insert code here!***/\r\n\t/*You can get the values on the board from: array[x][y]*/\r\n\tvar legalMoves = getLegalMoves(player);\r\n\tvar lm = Math.floor(legalMoves.length * Math.random());\r\n\tvar x = legalMoves[lm].xPos;\r\n\tvar y = legalMoves[lm].yPos;\r\n\taddMove(x,y,player)");
+	myCodeMirror.getDoc().setValue("\t/***Insert code here!***/\r\n\t/*You can get the values on the board from: array[x][y]*/\r\n\tvar legalMoves = getLegalMoves(player);\r\n\tvar lm = Math.floor(legalMoves.length * Math.random());\r\n\tvar x = legalMoves[lm].xPos;\r\n\tvar y = legalMoves[lm].yPos;\r\n\taddMove(x,y,player);");
 
         $("#custom-coder").append("<div class='custom-coder-settings'><input id='IsUserAI' type='checkbox' name='IsUserAI'>Run code automatically</input>" 
             + "<button onclick='autoMove()'>Run code</button><div class='clearfix'></div></div>");
