@@ -34,12 +34,18 @@ function removeMove(x, y) {
     array[x][y] = 0;
 }
 
+function passesKoRule(x, y, value)
+{
+	return true;
+}
+
 function canMove(x, y, value)
 {
 	var isEmpty = array[x][y] == 0;
 	var isPlayerTurn = (value == currentTurn)
+	var ko = passesKoRule(x, y, value);
 	//todo: implement this
-	return isEmpty && isPlayerTurn;
+	return isEmpty && isPlayerTurn && ko;
 }
 
 function mustRemove(item)
