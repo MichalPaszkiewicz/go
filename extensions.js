@@ -22,5 +22,3 @@ Array.prototype.equals = function (array) {
     }       
     return true;
 }   //taken from http://stackoverflow.com/questions/7837456/comparing-two-arrays-in-javascript
-
-alert([1, 2, 1, 2].equals([1, 2, 1, 2]));
