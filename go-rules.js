@@ -36,7 +36,12 @@ function removeMove(x, y) {
 
 function passesKoRule(x, y, value)
 {
-	return true;
+	var testArray = [];
+	testArray.setTo(array);
+	
+	testArray[x][y] = value;
+	
+	return !ARRAYminus1.equals(testArray);
 }
 
 function canMove(x, y, value)
