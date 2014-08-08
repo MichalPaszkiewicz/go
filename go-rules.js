@@ -1,8 +1,8 @@
 function addMove(x, y, value) {
     if (canMove(x, y, value)) {
     	
-    	ARRAYminus2 = ARRAYminus1;
-    	ARRAYminus1 = array;
+    	ARRAYminus2.setTo(ARRAYminus1);
+    	ARRAYminus1.setTo(array);
     	
     	MOVEminus2 = MOVEminus1;
     	
@@ -34,12 +34,24 @@ function removeMove(x, y) {
     array[x][y] = 0;
 }
 
+function passesKoRule(x, y, value)
+{
+	var testArray = [];
+	testArray.setTo(array);
+	
+	// todo: actually needs to take pieces, otherwise this will not be getting correct latest move
+	testArray[x][y] = value;
+	
+	return !ARRAYminus2.equals(testArray);
+}
+
 function canMove(x, y, value)
 {
 	var isEmpty = array[x][y] == 0;
 	var isPlayerTurn = (value == currentTurn)
+	var ko = passesKoRule(x, y, value);
 	//todo: implement this
-	return isEmpty && isPlayerTurn;
+	return isEmpty && isPlayerTurn && ko;
 }
 
 function mustRemove(item)
