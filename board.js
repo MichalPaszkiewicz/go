@@ -63,7 +63,7 @@ function setArray()
 	}
 }
 
-function logArray()
+function logArray(targetArray)
 {
 	console.log("y");
 	console.log(" |\\");
@@ -72,7 +72,7 @@ function logArray()
 		var newString = i + "|  ";
 		for(var j = 0; j < size; j++)
 		{
-			newString += " " + array[j][i];
+		    newString += " " + targetArray[j][i];
 		}	
 		console.log(newString);
 	}

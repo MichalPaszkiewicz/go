@@ -1,17 +1,17 @@
-function getAdjacentValues(x, y)
+function getAdjacentValues(targetArray, x, y)
 {
 	var adjacentValues = [];
 	for(var i = -1; i < 2; i += 2)
 	{
 		var a = x + i;
 		var b = y + i;
-		addToArray(adjacentValues, a, y);
-		addToArray(adjacentValues, x, b);
+		addToArray(targetArray, adjacentValues, a, y);
+		addToArray(targetArray, adjacentValues, x, b);
 	}
 	return adjacentValues;
 }
 
-function getAdjacentNonZeroValues(x, y)
+function getAdjacentNonZeroValues(targetArray, x, y)
 {
 	var adjacentValues = [];
 	for(var i = -1; i < 2; i += 2)
@@ -21,29 +21,29 @@ function getAdjacentNonZeroValues(x, y)
 		
 		if(isOutOfBounds(a, y))
 		{
-			addToArray(adjacentValues, a, y);
+		    addToArray(targetArray, adjacentValues, a, y);
 		}
 		else if(array[a][y] != 0)
 		{
-			addToArray(adjacentValues, a, y);			
+		    addToArray(targetArray, adjacentValues, a, y);
 		}
 		
 		if(isOutOfBounds(x, b))
 		{
-			addToArray(adjacentValues, x, b);
+		    addToArray(targetArray, adjacentValues, x, b);
 		}
 		else if(array[x][b] != 0)
 		{
-			addToArray(adjacentValues, x, b);
+		    addToArray(targetArray, adjacentValues, x, b);
 		}
 	}
 	
 	return adjacentValues;
 }
 
-function getAdjacentNonZeroValuesCount(x, y)
+function getAdjacentNonZeroValuesCount(targetArray, x, y)
 {
-	return getAdjacentNonZeroValues(x, y).length;
+    return getAdjacentNonZeroValues(targetArray, x, y).length;
 }
 
 function isOutOfBounds(x, y)
@@ -53,20 +53,21 @@ function isOutOfBounds(x, y)
     return result;
 }
 
-function addToArray(adjacentArray, x, y)
+function addToArray(targetArray, adjacentArray, x, y)
 {
     if (isOutOfBounds(x, y)) {
         adjacentArray.push({ xPos: x, yPos: y, val: "OUT_OF_BOUND" });
     }
     else
     {
-        adjacentArray.push({ xPos: x, yPos: y, val: array[x][y] });
+        adjacentArray.push({ xPos: x, yPos: y, val: targetArray[x][y] });
     }
 
     return adjacentArray;
 }
 
-function addToArrayWithVal(adjacentArray, x, y, value)
+//todo: check up on whether anything doesnt call target array
+function addToArrayWithVal(targetArray, adjacentArray, x, y, value)
 {
     if (isOutOfBounds(x, y)) {
         adjacentArray.push({ xPos: x, yPos: y, val: "OUT_OF_BOUND" });
@@ -74,27 +75,27 @@ function addToArrayWithVal(adjacentArray, x, y, value)
     else {
         if(array[x][y] == value)
         {
-            adjacentArray.push({ xPos: x, yPos: y, val: array[x][y] });
+            adjacentArray.push({ xPos: x, yPos: y, val: targetArray[x][y] });
         }
     }
 
     return adjacentArray;
 }
 
-function getAdjacentWithValue(x, y, value)
+function getAdjacentWithValue(targetArray, x, y, value)
 {
 	var adjacentWithValue = [];
 	for(var i = -1; i < 2; i += 2)
 	{
 		var a = x + i;
 		var b = y + i;
-		    addToArrayWithVal(adjacentWithValue, a, y, value);
-		    addToArrayWithVal(adjacentWithValue, x, b, value);
+		addToArrayWithVal(targetArray, adjacentWithValue, a, y, value);
+		addToArrayWithVal(targetArray, adjacentWithValue, x, b, value);
 	}
 	return adjacentWithValue;
 }
 
-function addToArrayWithExactVal(adjacentArray, x, y, value)
+function addToArrayWithExactVal(targetArray, adjacentArray, x, y, value)
 {
     if (isOutOfBounds(x, y)) {
         return adjacentArray;
@@ -102,22 +103,22 @@ function addToArrayWithExactVal(adjacentArray, x, y, value)
     else {
         if(array[x][y] == value)
         {
-            adjacentArray.push({ xPos: x, yPos: y, val: array[x][y] });
+            adjacentArray.push({ xPos: x, yPos: y, val: targetArray[x][y] });
         }
     }
 
     return adjacentArray;
 }
 
-function getAdjacentWithExactValue(x, y, value)
+function getAdjacentWithExactValue(targetArray, x, y, value)
 {
 	var adjacentWithValue = [];
 	for(var i = -1; i < 2; i += 2)
 	{
 		var a = x + i;
 		var b = y + i;
-		    addToArrayWithExactVal(adjacentWithValue, a, y, value);
-		    addToArrayWithExactVal(adjacentWithValue, x, b, value);
+		addToArrayWithExactVal(targetArray, adjacentWithValue, a, y, value);
+		addToArrayWithExactVal(targetArray, adjacentWithValue, x, b, value);
 	}
 	return adjacentWithValue;
 }
@@ -134,7 +135,7 @@ function adjacentArrayHasValue(adjacentArray, x, y)
 	return false;
 }
 
-function getLegalMoves(colour)
+function getLegalMoves(targetArray, colour)
 {
     var legalMoveArray = [];
 
@@ -142,7 +143,7 @@ function getLegalMoves(colour)
     {
         for(var j = 0; j < size; j++)
         {
-            if(canMove(i, j, colour))
+            if (canMove(targetArray, i, j, colour))
             {
                 legalMoveArray.push({ xPos : i, yPos : j});
             }
@@ -152,32 +153,32 @@ function getLegalMoves(colour)
     return legalMoveArray;
 }
 
-function getScoresFromArray(legalMoveArray)
+function getScoresFromArray(targetArray, legalMoveArray)
 {
     var arrayLength = legalMoveArray.length;
 
     for(var i = 0; i < arrayLength; i++)
     {
-        legalMoveArray[i].score = calculateScore(legalMoveArray[i].xPos, legalMoveArray[i].yPos);
+        legalMoveArray[i].score = calculateScore(targetArray, legalMoveArray[i].xPos, legalMoveArray[i].yPos);
     }
 
     return legalMoveArray;
 }
 
-function calculateMoveScore(x, y, colour)
+function calculateMoveScore(targetArray, x, y, colour)
 {
     var tempArray = array;
 
     addMove(x, y, colour);
 
-    var result = calculateScore();
+    var result = calculateScore(targetArray);
 
     array = tempArray;
 
     return result;
 }
 
-function calculateScore()
+function calculateScore(targetArray)
 {
     //todo: calculate the score on the board.
     return 0;
