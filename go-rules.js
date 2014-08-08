@@ -7,7 +7,7 @@ function addMove(x, y, value) {
     	MOVEminus2 = MOVEminus1;
     	
         array[x][y] = value;
-        takePieces(x, y, value);
+        takePieces(array, x, y, value);
         
         sendMove(x, y)
         
@@ -30,8 +30,8 @@ function addMove(x, y, value) {
     updateDisplay();
 }
 
-function removeMove(x, y) {
-    array[x][y] = 0;
+function removeMove(targetArray, x, y) {
+    targetArray[x][y] = 0;
 }
 
 function passesKoRule(x, y, value)
@@ -54,50 +54,50 @@ function canMove(x, y, value)
 	return isEmpty && isPlayerTurn && ko;
 }
 
-function mustRemove(item)
-{
-    var enemyValue = otherValue(item.val);
-    //console.log("mustRemove enemy val: " + enemyValue);
-    var enemies = getAdjacentWithValue(item.xPos, item.yPos, enemyValue);
+//function mustRemove(item)
+//{
+//    var enemyValue = otherValue(item.val);
+//    //console.log("mustRemove enemy val: " + enemyValue);
+//    var enemies = getAdjacentWithValue(array, item.xPos, item.yPos, enemyValue);
     
-    return enemies.length > 3;
-}
+//    return enemies.length > 3;
+//}
 
-function takePieces(x, y, value) {
+function takePieces(targetArray, x, y, value) {
     var placedValue = value;
     var enemyValue = otherValue(value);
-    var adjacentEnemies = getAdjacentWithValue(x, y, enemyValue);
+    var adjacentEnemies = getAdjacentWithValue(targetArray, x, y, enemyValue);
     
     for (var i = 0; i < adjacentEnemies.length; i++)
     {
         var cellGroup = [];
-        cellGroup = getCellGroup(cellGroup, adjacentEnemies[i].xPos, adjacentEnemies[i].yPos);
-        removeSurrounded(cellGroup);
+        cellGroup = getCellGroup(targetArray, cellGroup, adjacentEnemies[i].xPos, adjacentEnemies[i].yPos);
+        removeSurrounded(targetArray, cellGroup);
     }
 }
 
 //this will need to be tested.
-function getCellGroup(cellGroup, x, y)
+function getCellGroup(targetArray, cellGroup, x, y)
 {
 	var newCells = [];
 	
 	if( !adjacentArrayHasValue(cellGroup, x, y) && !isOutOfBounds(x,y))
 	{   
-		addToArray(cellGroup, x, y);
+	    addToArray(targetArray, cellGroup, x, y);
 	}
 	
 	var valueToPass = 5;
 	
 	if(!isOutOfBounds(x,y))
 	{
-		valueToPass = array[x][y];
+	    valueToPass = targetArray[x][y];
 	}
 	
-	var nextVals = getAdjacentWithExactValue(x, y, valueToPass);
+	var nextVals = getAdjacentWithExactValue(targetArray, x, y, valueToPass);
 	
 	for(var i=0; i< nextVals.length; i++)
 	{
-		if( !adjacentArrayHasValue(cellGroup, nextVals[i].xPos, nextVals[i].yPos) && (array[nextVals[i].xPos][nextVals[i].yPos] == array[x][y]))
+	    if (!adjacentArrayHasValue(cellGroup, nextVals[i].xPos, nextVals[i].yPos) && (targetArray[nextVals[i].xPos][nextVals[i].yPos] == targetArray[x][y]))
 		{
 			cellGroup.push(nextVals[i]);
 			newCells.push(nextVals[i]);
@@ -108,18 +108,18 @@ function getCellGroup(cellGroup, x, y)
 	{
 		for(var i=0; i< newCells.length; i++)
 		{
-			cellGroup = getCellGroup(cellGroup, newCells[i].xPos, newCells[i].yPos);
+		    cellGroup = getCellGroup(targetArray, cellGroup, newCells[i].xPos, newCells[i].yPos);
 		}
 	}
 
 	return cellGroup;
 }
 
-function removeSurrounded(cellGroup)
+function removeSurrounded(targetArray, cellGroup)
 {
 	for(var i=0; i< cellGroup.length; i++)
 	{
-		var nonZeroAdjacents = getAdjacentNonZeroValuesCount(cellGroup[i].xPos, cellGroup[i].yPos);
+	    var nonZeroAdjacents = getAdjacentNonZeroValuesCount(targetArray, cellGroup[i].xPos, cellGroup[i].yPos);
 		//console.log("Non zero adjacents: " + nonZeroAdjacents + " at: (" + cellGroup[i].xPos + "," + cellGroup[i].yPos + ")");
 		if(nonZeroAdjacents < 4)
 		{
@@ -129,7 +129,7 @@ function removeSurrounded(cellGroup)
 	
 	for(var i=0; i< cellGroup.length; i++)
 	{
-		removeMove(cellGroup[i].xPos, cellGroup[i].yPos);
+	    removeMove(targetArray, cellGroup[i].xPos, cellGroup[i].yPos);
 	}
 }
 

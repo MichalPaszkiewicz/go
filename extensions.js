@@ -1,21 +1,21 @@
 // attach the .equals method to Array's prototype to call it on any array
-Array.prototype.equals = function (array) {
+Array.prototype.equals = function (targetArray) {
     // if the other array is a falsy value, return
-    if (!array)
+    if (!targetArray)
         return false;
 
     // compare lengths - can save a lot of time 
-    if (this.length != array.length)
+    if (this.length != targetArray.length)
         return false;
 
     for (var i = 0, l=this.length; i < l; i++) {
         // Check if we have nested arrays
-        if (this[i] instanceof Array && array[i] instanceof Array) {
+        if (this[i] instanceof Array && targetArray[i] instanceof Array) {
             // recurse into the nested arrays
-            if (!this[i].equals(array[i]))
+            if (!this[i].equals(targetArray[i]))
                 return false;       
         }           
-        else if (this[i] != array[i]) { 
+        else if (this[i] != targetArray[i]) {
             // Warning - two different object instances will never be equal: {x:20} != {x:20}
             return false;   
         }           
@@ -25,9 +25,9 @@ Array.prototype.equals = function (array) {
 
 
 // set array to equal array properly.
-Array.prototype.setTo = function (array) {
+Array.prototype.setTo = function (targetArray) {
     // if the other array is a falsy value, return
-    if (!array || array.length < 1)
+    if (!targetArray || targetArray.length < 1)
         return false;
         
     if(this.length != size)
@@ -41,7 +41,7 @@ Array.prototype.setTo = function (array) {
     for (var i = 0; i < size; i++) {
         for(var j = 0; j < size; j++)
         {
-            this[i][j] = array[i][j];
+            this[i][j] = targetArray[i][j];
         }
     }       
     return this;

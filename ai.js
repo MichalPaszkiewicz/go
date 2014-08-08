@@ -1,7 +1,7 @@
 function aiMove()
 {
   var aiPlayer = otherValue(player);
-  var legalMoves = getLegalMoves(aiPlayer);
+  var legalMoves = getLegalMoves(targetArray, aiPlayer);
   
   var i = Math.floor(legalMoves.length * Math.random());
   

@@ -6,7 +6,7 @@ function createAlmostTaker() {
     addMove(6, 5, 2);
     addMove(4, 5, 2);
     addMove(5, 4, 2);
-    logArray();
+    logArray(array);
 }
 
 //for testing line
@@ -25,7 +25,7 @@ function createLineTake(){
 	addMove(5, 8, 2);
 	addMove(6, 8, 2);
 	addMove(7, 7, 2);
-	logArray();
+	logArray(array);
 	
 	//next move: 6,6,2
 }
@@ -33,7 +33,7 @@ function createLineTake(){
 function addBlackPiece(x,y)
 {
 	addMove(x,y,2);
-	logArray();
+	logArray(array);
 }
 
 function Main()
