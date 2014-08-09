@@ -41,6 +41,7 @@ function passesKoRule(x, y, value)
 	
 	// todo: actually needs to take pieces, otherwise this will not be getting correct latest move
 	testArray[x][y] = value;
+	takePieces(testArray,x,y,value);
 	
 	return !ARRAYminus2.equals(testArray);
 }
