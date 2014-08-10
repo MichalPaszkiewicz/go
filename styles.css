@@ -167,6 +167,7 @@ body, html {
 }
 
 .infobox {
+    vertical-align: top;
     max-width: 500px;
     display: inline-block;
     padding: 30px;
