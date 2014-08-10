@@ -1,5 +1,5 @@
 function addMove(x, y, value) {
-    if (canMove(x, y, value)) {
+    if (canMove(array, x, y, value)) {
     	
     	ARRAYminus2.setTo(ARRAYminus1);
     	ARRAYminus1.setTo(array);
@@ -49,9 +49,9 @@ function passesKoRule(x, y, value)
 	return result;
 }
 
-function canMove(x, y, value)
+function canMove(targetArray, x, y, value)
 {
-	var isEmpty = array[x][y] == 0;
+	var isEmpty = targetArray[x][y] == 0;
 	var isPlayerTurn = (value == currentTurn)
 	var ko = passesKoRule(x, y, value);
 	//todo: implement this
