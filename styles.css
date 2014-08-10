@@ -152,6 +152,11 @@ body, html {
     min-width: 650px;
 }
 
+#messaging-container{
+    clear: right;
+    float: right;
+}
+
 .chatbox {
     clear: right;
     float: right;
