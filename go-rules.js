@@ -19,10 +19,10 @@ function addMove(x, y, value) {
     	{
     		player = otherValue(player);
     	}
-    	if(gameMode == "AI")
+    	/*if(gameMode == "AI")
     	{
     		// todo: cal ai move, but not in here..
-    	}
+    	}*/
     }
     else {
         return;
@@ -46,16 +46,48 @@ function passesKoRule(x, y, value)
 	var result = !ARRAYminus2.equals(testArray);
 	var resultAlt = !ARRAYminus1.equals(testArray);
 	
-	return result;
+	return resultAlt;
 }
 
 function canMove(targetArray, x, y, value)
 {
 	var isEmpty = targetArray[x][y] == 0;
-	var isPlayerTurn = (value == currentTurn)
+	var isPlayerTurn = (value == currentTurn);
 	var ko = passesKoRule(x, y, value);
 	//todo: implement this
-	return isEmpty && isPlayerTurn && ko;
+	
+	var willPlaceNicely = notSuicide(targetArray, x, y, value);
+	
+	return isEmpty && isPlayerTurn && ko && willPlaceNicely;
+}
+
+function notSuicide(targetArray, x, y, value){
+	var testArray = [];
+	testArray.setTo(targetArray);
+	var noTakeArray = [];
+	noTakeArray.setTo(targetArray);
+	noTakeArray[x][y] = value;
+	
+	testArray[x][y] = value;
+	takePieces(testArray, x, y, value);
+	
+	var willRemove = false
+	
+	// this equals is returning a bad value... seems takepieces does not work
+	if(!testArray.equals(noTakeArray)){
+		willRemove = true;
+	}
+	
+	// need to calculate whether item must remove enemy pieces.
+	var mustRemove = false;
+	
+	console.log(willRemove);
+	
+	if(!mustRemove){
+		return true;
+	}
+	
+	return willRemove;
 }
 
 //function mustRemove(item)
@@ -67,6 +99,7 @@ function canMove(targetArray, x, y, value)
 //    return enemies.length > 3;
 //}
 
+// need to research how, and whether this actually works. Seems to break on all but active array.
 function takePieces(targetArray, x, y, value) {
     var placedValue = value;
     var enemyValue = otherValue(value);
