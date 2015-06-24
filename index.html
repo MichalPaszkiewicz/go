@@ -3,17 +3,8 @@
     <meta name="description" content="A multiplayer browser based game of go implementing PeerJS">
     <meta name="viewport" content="width=700, initial-scale=0.5">
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <script type="text/javascript" src="extensions.js"></script>
     <script src="http://cdn.peerjs.com/0.3/peer.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script type="text/javascript" src="connect.js"></script>
-	<script type="text/javascript" src="board.js"></script>
-	<script type="text/javascript" src="cell-finder.js"></script>
-	<script type="text/javascript" src="go-rules.js"></script>
-    <script type="text/javascript" src="test-bed.js"></script>
-    <script type="text/javascript" src="display-updater.js"></script>
-    <script type="text/javascript" src="ai.js"></script>
-
 
     <!--codemirror libraries-->
     <script src="codemirror/codemirror.js"></script>
@@ -48,7 +39,7 @@
                 <div id="GameSettings">
                 	<div id="GamesSettingsLink" class="hidden">
                 		<span id="friend-link-text" class="labelspan">Send this link to a friend: </span>	
-                		<input class="friend-link"></input>
+                		<input class="friend-link" />
                 	</div>
                 </div>
             </div>
@@ -65,18 +56,18 @@
 	            </div>
             </div>
             <div class="infobox">
-            	<div class="item"><span class="labelspan">Board size</span><input type="number" id="BoardSize" min="7" max="21" value="11"></input></div>
+            	<div class="item"><span class="labelspan">Board size</span><input type="number" id="BoardSize" min="7" max="21" value="11" /></div>
 		<div class="item"><span class="labelspan">Game mode</span>
 			<select id="game-mode-select">
-  				<option value="online">Online</option>
-  				<option value="local">Local</option>
-				<option value="AI">AI</option>
+  				<option value="1">Online</option>
+  				<option value="0">Local</option>
+				<option value="2">AI</option>
 			</select></div>
 		<div class="item player-item"><span class="labelspan">Play as</span>
 			<input type="radio" name="player" value=1 checked>White
 			<input type="radio" name="player" value=2>Black
 		</div>
-		<div class="item"><button onclick="newSettings(); sendSettings();">New game</button></div>
+		<div class="item"><button onclick="Go.newSettings(); Go.sendSettings();">New game</button></div>
             </div>
             <div id="custom-coder"></div>
         </div>
@@ -89,119 +80,5 @@
         </div>
     </div>
 
-    <script>
-        $('.him-her').keypress(function (e) {
-            if (e.keyCode == 13)
-                $('#connect').click();
-        });
-        $('.message').keypress(function (e) {
-            if (e.keyCode == 13)
-                $('#send').click();
-        });
-
-        function setTable(newSize) {
-            size = newSize
-            gameMode = $("#game-mode-select").val();
-            $("table").html(getNewTableHtml(newSize));	
-            $("table").removeClass("hidden");
-            if(host == 1 && gameMode == "online")
-            {
-            	$("#GamesSettingsLink").removeClass("hidden");
-            }
-            if(gameMode == "local" || gameMode == "AI")
-            {
-            	$("#GamesSettingsLink").addClass("hidden");
-            }
-            initiateArray();
-           
-           updateDisplay(); 
-           
-           $("#player-notifier").removeClass("hidden");
-        };
-        
-        function getNewTableHtml(newSize)
-        {
-            $('table').width(51 * newSize);
-            var html = "";
-            for (var i = newSize - 1; i > -1; i--) {
-                html += "<tr>";
-                for (var j = 0; j < newSize; j++) {
-                    html += "<td id=i" + j + "j" + i + "><div class='counter'></div></td>";
-                }
-                html += "</tr>";
-            }
-            return html;
-        }
-        
-        //setTable(11);
-
-        var customCodeNode = document.getElementById("custom-coder");
-        var myCodeMirror = CodeMirror(customCodeNode, {
-            lineNumbers: true,
-            theme: "ambiance"
-        });
-        
-        function resetCode()
-        {
-        	myCodeMirror.getDoc().setValue("\t/***Insert code here!***/\r\n\t/*You can get the values on the board from: array[x][y]*/\r\n\tvar legalMoves = getLegalMoves(array, player);\r\n\tvar lm = Math.floor(legalMoves.length * Math.random());\r\n\tvar x = legalMoves[lm].xPos;\r\n\tvar y = legalMoves[lm].yPos;\r\n\taddMove(x,y,player);");
-        }
-        
-        var localCode = localStorage.getItem("go-AI.js");
-        
-        if(localCode != null)
-        {
-        	myCodeMirror.setValue(localCode);
-        }
-        else
-        {
-        	resetCode();
-        }
-
-        $("#custom-coder").append("<div class='custom-coder-settings'><input id='IsUserAI' type='checkbox' name='IsUserAI'>Run code automatically</input>" 
-            + "<button onclick='autoMove()'>Run code</button>"
-            + "<button onclick='localStorage.setItem(\"go-AI.js\", myCodeMirror.getValue())'>Save code</button>"
-            + "<button onclick='resetCode()'>Reset</button>"
-            + "<div class='clearfix'></div></div>");
-
-	function autoMove()
-	{
-		eval(myCodeMirror.getValue());
-		if(gameMode == "AI")
-		{
-			aiMove();
-		}
-	}
-	
-	function newSettings()
-	{
-		var ARRAYminus1 = [];
-		var ARRAYminus2 = [];
-		if($("#game-mode-select").val() == "online")
-		{
-			player = parseInt($('input[name=player]:checked').val());
-		}
-		else
-		{
-			player = 1;
-			currentTurn = 1;
-		}
-		host = 1; 
-		setTable($('#BoardSize').val());
-	}
-	
-	$("#game-mode-select").change(function(){
-		if($("#game-mode-select").val() == "online")
-		{
-			$(".player-item").removeClass("hidden");
-		}
-		else
-		{
-			$(".player-item").addClass("hidden");	
-		}
-		
-	});
-	
-	console.log("%c" + "A website made by Michal Paszkiewicz", "color: aliceBlue; text-shadow: black 1px 1px 4px; font-size: 40px;")
-    </script>
-
+    <script src="@script.js"></script>
 </body>

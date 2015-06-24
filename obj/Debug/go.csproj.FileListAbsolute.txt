@@ -1,0 +1,6 @@
+C:\Users\Me-uth\Documents\Github\go\go\bin\go.dll.config
+C:\Users\Me-uth\Documents\Github\go\go\bin\go.dll
+C:\Users\Me-uth\Documents\Github\go\go\bin\go.pdb
+C:\Users\Me-uth\Documents\Github\go\go\obj\Debug\go.dll
+C:\Users\Me-uth\Documents\Github\go\go\obj\Debug\go.pdb
+C:\Users\Me-uth\Documents\Github\go\go\obj\Debug\go.csprojResolveAssemblyReference.cache
